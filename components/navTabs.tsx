@@ -23,15 +23,8 @@ export default function NavTabs({ pageIdx }: { pageIdx: number }) {
    * @param newValue - The index of the clicked tab.
    */
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-    // Find the HTML element from the navigation bar, that the user clicked on
-    const navElement: any = event.target;
-    // Find the label of the clicked tab
-    const tabLabel: string = navElement.outerText;
-    // The repo tab leads to an external page, no need to change the active tab
-    if (tabLabel.toUpperCase() !== Constants.LABEL_REPO.toUpperCase()) {
-      // If the user clicks on the logo, set tab for homepage as active, otherwise the clicked tab
-      newValue == -1 ? setActiveTab(0) : setActiveTab(newValue);
-    }
+    // If the user clicks on the logo, set tab for homepage as active, otherwise the clicked tab
+    newValue == -1 ? setActiveTab(0) : setActiveTab(newValue);
   };
 
   return (
@@ -42,7 +35,11 @@ export default function NavTabs({ pageIdx }: { pageIdx: number }) {
         aria-label="nav tabs"
       >
         <StyledTab label={Constants.LABEL_LANDING} href="/" />
-        <StyledTab label={Constants.LABEL_BLOG} href="/research" />
+        <StyledTab label={Constants.LABEL_CHEM} href="/chemistry" />
+        <StyledTab label={Constants.LABEL_AI} href="/ai" />
+        <StyledTab label={Constants.LABEL_PROGRAMMING} href="/programming" />
+        <StyledTab label={Constants.LABEL_MATH_FOR_SCI} href="/math" />
+        <StyledTab label={Constants.LABEL_ABOUT} href="/about" />
       </StyledTabs>
     </Box>
   );

@@ -10,13 +10,13 @@ const INFO_SCHOLAR = "Abstract taken from Google Scholar:";
 const ACTION_ARTICLE = "Go to article";
 const ACTION_MORE = "Learn More";
 
-const LABEL_REPO = "Code";
 const LABEL_LANDING = "Home";
 const LABEL_BLOG = "Research";
-const LABEL_TEAM = "People";
-const LABEL_PUBLICATIONS = "Publications";
-const LABEL_EDUCATION = "Education";
-const LABEL_CONTACT = "Contact";
+const LABEL_CHEM = "Chemistry";
+const LABEL_MATH_FOR_SCI = "Math for Science";
+const LABEL_PROGRAMMING = "Programming";
+const LABEL_AI = "Artificial Intelligence";
+const LABEL_ABOUT = "About";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -28,11 +28,11 @@ export default {
   GITHUB_URL,
   ACTION_ARTICLE,
   ACTION_MORE,
-  LABEL_REPO,
   LABEL_LANDING,
   LABEL_BLOG,
-  LABEL_TEAM,
-  LABEL_PUBLICATIONS,
-  LABEL_EDUCATION,
-  LABEL_CONTACT,
+  LABEL_AI,
+  LABEL_CHEM,
+  LABEL_MATH_FOR_SCI,
+  LABEL_PROGRAMMING,
+  LABEL_ABOUT,
 };

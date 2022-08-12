@@ -6,13 +6,14 @@ import { evaluate, compile } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime.js";
 
 // path to the directory in which the posts are stored
-const postsDirectoryPath = path.join(process.cwd(), "pages", "posts");
+const pagesPath = path.join(process.cwd(), "pages");
 
 /**
  * Retrieve a sparse list of posts from the respective folder.
  */
-export const getSortedPostsData = async (): Promise<Array<Post>> => {
+export const getSortedPostsData = async (folder): Promise<Array<Post>> => {
   // Get file names under /posts
+  const postsDirectoryPath = path.join(pagesPath, folder);
   const fileNames = fs.readdirSync(postsDirectoryPath);
   const allPostsData = fileNames.map(async (fileName) => {
     // Remove ".md" from file name to get id
@@ -55,7 +56,8 @@ export const getSortedPostsData = async (): Promise<Array<Post>> => {
 /**
  * Retrieve the IDs of all posts.
  */
-export const getAllPostIds = () => {
+export const getAllPostIds = (folder) => {
+  const postsDirectoryPath = path.join(pagesPath, folder);
   const fileNames = fs.readdirSync(postsDirectoryPath);
   return fileNames.map((fileName) => {
     return {
