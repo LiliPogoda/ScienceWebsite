@@ -1,5 +1,3 @@
-# Science
-
 # TODOS
 
 ## Programming
@@ -15,13 +13,16 @@
 
 - Intro Python stuff
 
+### Nature Science
+
 ## AI
 
 - Current Project posts
 - AI basics
-- Data Science for Nature Science
+- Data Science/ML for Nature Science
 
 ## Math for Science
 
 - Dynamical Systems Theory
 - Linear Algebra
+  - Matrices
