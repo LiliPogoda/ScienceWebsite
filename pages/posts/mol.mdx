@@ -8,8 +8,6 @@ import * as React from "react";
 import { test } from "../../lib/molView.ts";
 import LayoutPostWrapper from "../../components/layoutPostWrapper";
 
-<script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
-
 <div
   id="container-01"
   className={"mol-container"}
@@ -22,8 +20,16 @@ import LayoutPostWrapper from "../../components/layoutPostWrapper";
 
 <button onClick={test}>Test</button>
 
+# Firefly Luciferase
+
+TODO: Add nice description
+
+export const head = (
+  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+);
+
 export default ({ children }) => (
-  <LayoutPostWrapper date={meta.date} title={meta.title}>
+  <LayoutPostWrapper date={meta.date} title={meta.title} head={head}>
     {children}
   </LayoutPostWrapper>
 );
