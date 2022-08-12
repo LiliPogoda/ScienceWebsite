@@ -23,7 +23,6 @@ export default function LayoutPostWrapper({
   head?: React.ReactNode;
   pageIdx: number;
 }) {
-  console.log(pageIdx);
   return (
     <Layout pageIdx={pageIdx}>
       <Head>

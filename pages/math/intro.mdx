@@ -8,8 +8,28 @@ import * as React from "react";
 import { test } from "../../lib/molView.ts";
 import LayoutPostWrapper from "../../components/layoutPostWrapper";
 
+<div id="pyscriptAnchor" style={{ width: "400px" }} />
+
+<py-script src="/testFile.py"></py-script>
+
+export const head = (
+  <>
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <py-env>
+        - matplotlib
+        - numpy
+    </py-env>
+  </>
+);
+
 export default ({ children }) => (
-  <LayoutPostWrapper date={meta.date} title={meta.title} pageIdx={4}>
+  <LayoutPostWrapper
+    date={meta.date}
+    title={meta.title}
+    pageIdx={4}
+    head={head}
+  >
     {children}
   </LayoutPostWrapper>
 );
