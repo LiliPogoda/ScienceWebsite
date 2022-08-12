@@ -22,7 +22,7 @@ export default function LayoutPostWrapper({
   head?: React.ReactNode;
 }) {
   return (
-    <Layout pageIdx={2}>
+    <Layout pageIdx={1}>
       <Head>
         <link
           rel="stylesheet"

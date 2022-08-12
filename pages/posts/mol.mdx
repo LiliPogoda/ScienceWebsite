@@ -3,3 +3,27 @@ export const meta = {
   date: "2020-01-02",
   author: "Jan Schering",
 };
+
+import * as React from "react";
+import { test } from "../../lib/molView.ts";
+import LayoutPostWrapper from "../../components/layoutPostWrapper";
+
+<script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+
+<div
+  id="container-01"
+  className={"mol-container"}
+  style={{
+    width: "100%",
+    height: "600px",
+    position: "relative",
+  }}
+></div>
+
+<button onClick={test}>Test</button>
+
+export default ({ children }) => (
+  <LayoutPostWrapper date={meta.date} title={meta.title}>
+    {children}
+  </LayoutPostWrapper>
+);
