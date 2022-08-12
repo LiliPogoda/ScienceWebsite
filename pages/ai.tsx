@@ -5,7 +5,7 @@ import { getSortedPostsData } from "../lib/posts";
 
 import PostList from "../components/postList";
 
-const categoryName = "chemistry";
+const categoryName = "ai";
 
 export default function Chemistry({
   allPostsData,
@@ -18,7 +18,7 @@ export default function Chemistry({
   }[];
 }) {
   return (
-    <PostList allPostsData={allPostsData} category={categoryName} pageIdx={1} />
+    <PostList allPostsData={allPostsData} category={categoryName} pageIdx={2} />
   );
 }
 

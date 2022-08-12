@@ -1,0 +1,26 @@
+import Layout from "../components/layout";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { Paper } from "@mui/material";
+import Stack from "@mui/material/Stack";
+
+import Constants from "../lib/constants";
+
+import styles from "../styles/utils.module.css";
+
+# TODO
+
+TODO
+
+export default ({ children }) => (
+  <Layout pageIdx={5}>
+    <Stack spacing={1}>
+      <Paper elevation={3} style={{ opacity: "90%" }}>
+        <Container maxWidth="md" className={styles.padded}>
+          {children}
+        </Container>
+      </Paper>
+    </Stack>
+  </Layout>
+);

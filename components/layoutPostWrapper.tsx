@@ -15,14 +15,17 @@ export default function LayoutPostWrapper({
   title,
   date,
   head,
+  pageIdx,
 }: {
   children: React.ReactNode;
   title: string;
   date: string;
   head?: React.ReactNode;
+  pageIdx: number;
 }) {
+  console.log(pageIdx);
   return (
-    <Layout pageIdx={1}>
+    <Layout pageIdx={pageIdx}>
       <Head>
         <link
           rel="stylesheet"

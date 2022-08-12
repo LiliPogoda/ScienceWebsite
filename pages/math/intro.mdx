@@ -1,0 +1,15 @@
+export const meta = {
+  title: "Intro",
+  date: "2022-08-12",
+  author: "Jan Schering",
+};
+
+import * as React from "react";
+import { test } from "../../lib/molView.ts";
+import LayoutPostWrapper from "../../components/layoutPostWrapper";
+
+export default ({ children }) => (
+  <LayoutPostWrapper date={meta.date} title={meta.title} pageIdx={4}>
+    {children}
+  </LayoutPostWrapper>
+);

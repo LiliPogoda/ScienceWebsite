@@ -29,7 +29,12 @@ export const head = (
 );
 
 export default ({ children }) => (
-  <LayoutPostWrapper date={meta.date} title={meta.title} head={head}>
+  <LayoutPostWrapper
+    date={meta.date}
+    title={meta.title}
+    head={head}
+    pageIdx={1}
+  >
     {children}
   </LayoutPostWrapper>
 );
