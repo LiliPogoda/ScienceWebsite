@@ -1,11 +1,7 @@
-const META_DESCRIPTION =
-  "Home of the Artificial Cognitive Systems Research Group";
-const GITHUB_URL = "https://github.com/artcogsys";
-const SITE_TITLE = "Artificial Cognitive Systems Research Group";
-const MISSION = "Mission Statement";
+const META_DESCRIPTION = "Chemistry, AI and programming education";
+const SITE_TITLE = "Nature Science & Programming";
 
 const INFO_HTML5 = "Your browser does not support HTML5 video.";
-const INFO_SCHOLAR = "Abstract taken from Google Scholar:";
 
 const ACTION_ARTICLE = "Go to article";
 const ACTION_MORE = "Learn More";
@@ -22,10 +18,7 @@ const LABEL_ABOUT = "About";
 export default {
   META_DESCRIPTION,
   SITE_TITLE,
-  MISSION,
   INFO_HTML5,
-  INFO_SCHOLAR,
-  GITHUB_URL,
   ACTION_ARTICLE,
   ACTION_MORE,
   LABEL_LANDING,
