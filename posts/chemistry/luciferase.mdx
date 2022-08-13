@@ -14,8 +14,6 @@ Bioluminiscence - The production and emission of light by living organisms.
 The fireflies are the most well-known and studied bioluminscent organisms. Responsible for the light prdocuction is a special enzyme-substrate system: The firefly luciferase (enzyem) and the luciferin (substrate).
 The enzyme catalyses the conversion of firefly luciferin into an oxidised exited state. When it returns to the ground state Energy in form of light is realeased.
 
-The Luciferase (TODO: description? and picture)
-
 <div
   id="container-01"
   className={"mol-container"}
@@ -24,8 +22,12 @@ The Luciferase (TODO: description? and picture)
     height: "600px",
     position: "relative",
   }}
-  onLoad={() => console.log("loaded")}
+  onLoad={displayLuciferase}
 ></div>
+
+{displayLuciferase()}
+
+TODO: description?
 
 The luciferin (TODO:picture and description)
 

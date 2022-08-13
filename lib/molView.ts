@@ -1,4 +1,8 @@
 export const displayLuciferase = () => {
+  const SSR = typeof window === "undefined";
+  if (SSR) {
+    return "Loading";
+  }
   let $3Dmol = (window as any).$3Dmol;
   $(function () {
     let element = $("#container-01");

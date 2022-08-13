@@ -11,14 +11,9 @@ import { getAllPostIds, getPost } from "../../lib/posts";
 import LayoutPostWrapper from "../../components/layoutPostWrapper";
 import { displayLuciferase } from "../../lib/molView";
 
-export const head = (
-  // eslint-disable-next-line @next/next/no-sync-scripts
-  <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
-);
-
 export default function Chemistry({ source, title, date, author }) {
   return (
-    <LayoutPostWrapper date={date} title={title} pageIdx={1} head={head}>
+    <LayoutPostWrapper date={date} title={title} pageIdx={1}>
       <MDXRemote {...source} scope={{ displayLuciferase }} />
     </LayoutPostWrapper>
   );
