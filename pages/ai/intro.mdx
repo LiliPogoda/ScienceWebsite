@@ -5,11 +5,15 @@ export const meta = {
 };
 
 import * as React from "react";
-import { test } from "../../lib/molView.ts";
 import LayoutPostWrapper from "../../components/layoutPostWrapper";
 
-export default ({ children }) => (
-  <LayoutPostWrapper date={meta.date} title={meta.title} pageIdx={2}>
-    {children}
-  </LayoutPostWrapper>
-);
+Test
+
+export default (test) => {
+  console.log(test);
+  return (
+    <LayoutPostWrapper date={meta.date} title={meta.title} pageIdx={2}>
+      {test.children}
+    </LayoutPostWrapper>
+  );
+};
