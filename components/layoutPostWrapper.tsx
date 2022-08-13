@@ -26,10 +26,6 @@ export default function LayoutPostWrapper({
   return (
     <Layout pageIdx={pageIdx}>
       <Head>
-        <link
-          rel="stylesheet"
-          href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css"
-        ></link>
         <title>{title}</title>
         {head}
       </Head>

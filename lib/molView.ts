@@ -1,4 +1,4 @@
-export const test = () => {
+export const displayLuciferase = () => {
   let $3Dmol = (window as any).$3Dmol;
   $(function () {
     let element = $("#container-01");
