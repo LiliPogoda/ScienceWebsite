@@ -3,6 +3,9 @@ import { AppProps } from "next/app";
 import { MDXProvider } from "@mdx-js/react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Sandpack } from "@codesandbox/sandpack-react";
+
+/* JSX Usage */
 
 import "../styles/global.css";
 import styles from "../styles/utils.module.css";
@@ -21,6 +24,7 @@ declare global {
 
 const components = {
   Button,
+  Sandpack,
 };
 
 const darkTheme = createTheme({
