@@ -1,0 +1,26 @@
+---
+title: "SandPack Testing"
+date: "2022-08-12"
+author: "Jan Schering"
+---
+
+<Sandpack
+  template="react-ts"
+  theme="dark"
+  files={{
+    "/App.tsx": `import {Test} from "./component.tsx"
+export default function App() {
+  return (<div>
+    <Test />
+    Hello Sandpack
+  </div>)
+}`,
+    "/component.tsx": `export const Test = () => <h1 style={{backgroundColor: "red"}}>Test Component</h1>`,
+  }}
+  customSetup={{
+    dependencies: {
+      "react-test-renderer": "*",
+    },
+  }}
+/>
+;
