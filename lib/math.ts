@@ -1,6 +1,5 @@
 import path from "path";
 import fs from "fs";
-import { compileSync } from "@mdx-js/mdx";
 
 const testPath = path.join(process.cwd(), "public", "example.mdx");
 

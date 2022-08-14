@@ -10,11 +10,12 @@ import matter from "gray-matter";
 import { getAllPostIds, getPost } from "../../lib/posts";
 import LayoutPostWrapper from "../../components/layoutPostWrapper";
 import { displayLuciferase } from "../../lib/molView";
+import { fireFlies } from "../../lib/fireflies";
 
 export default function Chemistry({ source, title, date, author }) {
   return (
     <LayoutPostWrapper date={date} title={title} pageIdx={1}>
-      <MDXRemote {...source} scope={{ displayLuciferase }} />
+      <MDXRemote {...source} scope={{ displayLuciferase, fireFlies }} />
     </LayoutPostWrapper>
   );
 }
