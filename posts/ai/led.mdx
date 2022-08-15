@@ -6,33 +6,34 @@ author: "Jan Schering"
 
 <h1>Complexity on multiple scales</h1>
 
-Researchers in various disciplines (Chemistry, Physics, Biology, ...) are interested in the study of complex systems. The dynamics
-of these systems often depend on space and time on more than a single scale. I.e., the observable system dynamics depend on the
-scale of time and space at which the system is analyzed. An example for this is global warming. Fig. 1 shows the annual sea surface temperature, recorded
-between 1850 and 2020. The researchers have analyzed the trends of this data at different time scales and different complexities.
+Nature Science at large can simply be defined as the study of nature phenomena. That definition is neither special nor surprising. 
+But I find it helpful to recall it, if purely to remember that the different disciplines, Biology, Chemistry, Physics and Math, are 
+the same thing at heart. What differs is the scale of the phenomena under analysis. Each discipline represents a layer of abstraction
+through which they view nature. Biologists tend to consider organisms, while Chemists work on the level of proteins, molecules and atoms.
 
-<figure>
-  <img src="/global_warming_multiscale.jpg" style={{ width: "600px" }} />
-  <figcaption>
-    Fig.1 - Analysis of the annual sea surface temperature (SST) data: (a) the
-    original data and trend signals of different resolutions, (b) the residual
-    signals.
-  </figcaption>
-</figure>
-
-Another way to look at it, is that systems can be described at multiple levels of abstraction. An example for this is the analysis
+Complex systems, like nature, can often be separated into processes at multiple levels of abstraction, with the low level processes culminating in
+the emergence of higher-level behavior. An example for this is the analysis
 of protein dynamics. At a high level, we can describe the interaction between different proteins. Each protein then is an abstraction for a system
 of amino acids interacting with each other. The dynamics of the amino acid interactions on the smaller scale leads to the emergence of the protein behaviors
 on a larger scale. Going even further, we can see each amino acid as a system of molecules exhibiting molecular dynamics.
 
 <h1>Complex Systems are hard to simulate</h1>
 
-Previous efforts have shown that resolving the full range of spatio-temporal scales in complex
+Previous efforts have shown that resolving the full range of scales in complex
 systems will remain out of reach in the foreseeable future. However, as with all things mathematical: if you can't do the real thing, approximate it.
-Multiple systems have been introduced to do just that. In order to be successful
+In order to be successful, we need to distinguish what the main difficulties are. [1] distinguish
+two key problems:
+
+1. Finding the scales that are important to the overall system dynamics
+2. Transferring information between the processes happening at different scales
+
+Multiple frameworks have been introduced that try to solve the two issues. A particularly popular example is the Equation-Free framework (EFF). Goal of the EFF is to
+simulate a macroscopic complex system, for which we **don't** have a model available. What we do have, presumably, is models for the underlying processes
+at finer scales [2]. E.g.: We have a model for molecular dynamics but we don't have a model available for protein interaction. Because higher level phenomena arise 
+from the low level processes, the EFF presumes that we should be able to derive a model for them directly from the known, low level processes.
 
 <h1>Credits</h1>
 
-- Figure 1: Gao, J. and Xu, B. (2021). Complex Systems, Emergence, and
-  Multiscale Analysis: A Tutorial and Brief Survey. Appl. Sci. 2021, 11(12),
-  5736; https://doi.org/10.3390/app11125736
+[1] Vlachas, P. R., Arampatzis, G., Uhler, C., & Koumoutsakos, P. (2022). Multiscale simulations of complex systems by learning their effective dynamics. Nature Machine Intelligence, 4(4), 359-366.
+
+[2] Kevrekidis, I. G., Gear, C. W., Hyman, J. M., Kevrekidis, P. G., Runborg, O., & Theodoropoulos, C. (2003). Equation-free, coarse-grained multiscale computation: enabling microscopic simulators to perform system-level analysis. Commun. Math. Sci, 1(4), 715-762.
