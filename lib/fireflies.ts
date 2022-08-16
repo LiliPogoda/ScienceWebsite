@@ -138,7 +138,7 @@ export const fireFlies = (function () {
       position = "absolute";
     }
     element_dom.innerHTML +=
-      "<div id='flies' style='position: " +
+      "<div id='flies' style='z-index: 0; position: " +
       position +
       "; top: 0; left:0; overflow:hidden; width:" +
       width +

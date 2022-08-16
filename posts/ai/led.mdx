@@ -32,7 +32,17 @@ simulate a macroscopic complex system, for which we **don't** have a model avail
 at finer scales [2]. E.g.: We have a model for molecular dynamics but we don't have a model available for protein interaction. Because the macroscopic phenomena arise
 from the low level processes, the EFF presumes that we should be able to derive a macroscopic model from the known, low level processes.
 
-The EFF 
+For Advanced Readers: The Mechanism behind the EFF:
+
+We define:
+
+- $u(t)$ , the microscopic, detailed solution to the system. Assume that $u$ is a system of ODEs, $u \in \mathbb{R}^m$
+- $\mathcal{T}_d$ , the detailed timestepper - equation that provides the microscopic solution
+- $\mathcal{T}_d^t = u(s + t)$, the detailed timestepper mapping the system state at time $s$ to the state at time $s+t$
+- $U \in \mathbb{R}^M$, $M \ll m$, the selected coarse description of the system. E.g. in a gas simulation: pressure, density, velocity.
+- $\mathcal{M}$, the _restriction_ operator. Maps a microscopic state $u$ to the corresponding macroscopic state $U$ such that $U = \mathcal{M}u$
+
+The EFF
 
 <h1>Credits</h1>
 

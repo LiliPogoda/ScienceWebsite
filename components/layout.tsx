@@ -43,7 +43,7 @@ export default function Layout({
           <NavTabs pageIdx={pageIdx} />
         </Container>
       </header>
-      <main className={styles.relative}>
+      <main className={styles.relative} style={{zIndex: "1"}}>
         <Container maxWidth="lg" className={utilStyles.mainContainer}>
           {children}
         </Container>
