@@ -6,7 +6,8 @@ import rehypeMathjax from "rehype-mathjax";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import matter from "gray-matter";
-
+import remarkDirective from "remark-directive";
+import remarkDirectiveRehype from "remark-directive-rehype";
 import { getAllPostIds, getPost } from "../../lib/posts";
 import LayoutPostWrapper from "../../components/layoutPostWrapper";
 import { displayLuciferase, renderMol2D } from "../../lib/molView";
@@ -28,7 +29,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const matterResult = matter(source);
   const mdxSource = await serialize(matterResult.content, {
     mdxOptions: {
-      remarkPlugins: [remarkMath, require("remark-prism")],
+      remarkPlugins: [
+        remarkDirective,
+        remarkDirectiveRehype,
+        remarkMath,
+        require("remark-prism"),
+      ],
       rehypePlugins: [rehypeMathjax],
       format: "mdx",
     },

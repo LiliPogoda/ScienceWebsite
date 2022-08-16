@@ -30,3 +30,8 @@ img {
 [class*="timeline-Widget"] {
   color: white;
 }
+
+.box {
+  border: 1px solid black;
+  width: fit-content;
+}
