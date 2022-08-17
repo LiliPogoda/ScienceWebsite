@@ -32,6 +32,15 @@ simulate a macroscopic complex system, for which we **don't** have a model avail
 at finer scales [2]. E.g.: We have a model for molecular dynamics but we don't have a model available for protein interaction. Because the macroscopic phenomena arise
 from the low level processes, the EFF presumes that we should be able to derive a macroscopic model from the known, low level processes.
 
+# The Math behind the LED framework
+
+We define:
+
+- $s \in \mathbb{R}^{d_s} $ , the state of a $d_s$-dimensional dynamical system.
+- $\triangle t$ , the sampling period/step size for the discretized system equation.
+- $s_{t + \triangle t} = F(s_t)$ , a discrete mapping function $F$ that evolves the system in time. $F$ can be non-linear, stochastic or deterministic
+- $z_t \in Z, Z \subset \mathbb{R}^{d_z}, d_z \ll d_s$ , we assume that there is a lower ($d_z$-)dimensional description $z_t$ capturing the state of the system.
+
 
 # Credits
 
