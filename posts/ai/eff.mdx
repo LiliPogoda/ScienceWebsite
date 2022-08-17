@@ -1,0 +1,53 @@
+---
+title: "EFF: The Equation-Free Framework for approximate Simulation of large complex Systems"
+date: "2022-08-14"
+author: "Jan Schering"
+---
+
+For Advanced Readers: The Mechanism behind the EFF:
+
+We define:
+
+- $u(t)$ , the microscopic, detailed solution to the system. Assume that $u$ is a system of ODEs, $u \in \mathbb{R}^m$
+- $\mathcal{T}_d$ , the detailed timestepper - equation that provides the microscopic solution
+- $\mathcal{T}_d^t = u(s + t)$, the detailed timestepper mapping the system state at time $s$ to the state at time $s+t$
+- $U \in \mathbb{R}^M$, $M \ll m$, the selected coarse description of the system. E.g. in a gas simulation: pressure, density, velocity.
+- $\mathcal{M}$, the _restriction_ operator. Maps a microscopic state $u$ to the corresponding macroscopic state $U$ such that $U = \mathcal{M}u$
+- $\mu$ , the _lifting_ operator. Maps a macroscopic state $U$ onto a consistent microscopic state $u$ such that $\mathcal{M}\mu = I$. This means, _lifting_ is fully reversible through _restriction_.
+Note, that in most cases $\mu$ is not unique. This is due to multiple realizability of the system (e.g. two different pairs of velocities can map onto the same average velocity.)
+
+The idea here is that if $U$ describes the macroscopic system successfully, the remaining system quantities should be approximable as functions of $U$.
+That means, we should be able to map from $U$ onto a $m$-dimensional manifold approximating $u$. On this manifold, the components of U would vary slowly.
+We further define:
+
+- $\mathcal{T}_c^\tau$ , The coarse timestepper. Equation that governs the macroscopic dynamics. We **don't** have a closed form solution for this.
+- $\tau > 0$ , the time horizon of the coarse stepper. Choose small enough that it is tractable to calculate $\mathcal{T}_d^{\tau}$, but long enough for the macroscopic dynamics to evolve meaningfully
+
+Using the given definitions, we can further define the coarse timestepper $\mathcal{T}_c^\tau$ as:
+
+### $\mathcal{T}_c^\tau = \mathcal{M}\mathcal{T}_d^{\tau}\mu$
+
+In words, the macroscopic timestepper works by:
+
+1. Mapping the macroscopic state onto a microscopic manifold $u$
+2. Using the detailed timestepper to evolve the microscopic state for $\tau$ timesteps
+3. Mapping the resulting microscopic state back into a macroscopic description $U$
+
+The authors note that after an initial "warmup" period $s$, the dynamics of this timestepper will approximately approach the real dynamics of the macroscopic complex system. Thus,
+we assume that $U(t + s) \approx \mathcal{M}\mathcal{T}_d^s u(t)$.
+
+This allows us to do "short time" simulations of the system.
+
+TODO: Coarse Projective integration
+
+So far, the method has only addressed the temporal aspect of the system. However, the behavior of many complex systems also has a spatial dependency.
+Space here refers to the domain of the variable and while it could mean physical space, it could also refer to frequencies, probabilities, etc. To address the spatial dependencies,
+the authors of [1] have come up with the "gap-tooth" scheme. The scheme enables "small space, short time" simulations of the macroscopic system. The goal is to combine it with the Coarse
+Projective Integrator to enable "large space, large time" simulations. We again consider $u(t)$ to be a microscopic description of a macroscopic system $U(t)$. However, $u$ is now connected
+to spatial points and there is a set of boundary conditions. If we want to solve for $u$ in a larger space, the dimensionality of the problem also grows. It follows that we can only solve $u$
+for small spaces. We need to extend our definitions as follows:
+
+- $U(t, x) = \mathcal{M}u(t)$, the _lifting_ operator $\mathcal{M}$ now maps microscopic states $u(t)$ onto a function $U(t,x)$ that is continuous in the spacial variable $x$.
+- $U_t = L(t, x, U, \partial_x U, \dots, \partial_x^p U)$ , U is an evolution equation of the complex system. A macroscopic state $U_t$ can be defined as some function $L$
+depending on the time $t$, space $x$, the evolution equation $U$ and its $p$ higher order derivatives. There is no closed form solution available for this equation.
+

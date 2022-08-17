@@ -4,7 +4,7 @@ date: "2022-08-14"
 author: "Jan Schering"
 ---
 
-<h1>Complexity on multiple scales</h1>
+# Complexity on multiple scales 
 
 Nature Science at large can simply be defined as the study of nature phenomena. That definition is neither special nor surprising.
 But I find it helpful to recall it, if purely to remember that the different disciplines, Biology, Chemistry, Physics and Math, are
@@ -17,7 +17,7 @@ of protein dynamics. At a high level, we can describe the interaction between di
 of amino acids interacting with each other. The dynamics of the amino acid interactions on the smaller scale leads to the emergence of the protein behaviors
 on a larger scale. Going even further, we can see each amino acid as a system of molecules exhibiting molecular dynamics.
 
-<h1>Complex Systems are hard to simulate</h1>
+# Complex Systems are hard to simulate
 
 Previous efforts have shown that resolving the full range of scales in complex
 systems will remain out of reach in the foreseeable future. However, as with all things mathematical: if you can't do the real thing, approximate it.
@@ -32,31 +32,8 @@ simulate a macroscopic complex system, for which we **don't** have a model avail
 at finer scales [2]. E.g.: We have a model for molecular dynamics but we don't have a model available for protein interaction. Because the macroscopic phenomena arise
 from the low level processes, the EFF presumes that we should be able to derive a macroscopic model from the known, low level processes.
 
-For Advanced Readers: The Mechanism behind the EFF:
 
-We define:
-
-- $u(t)$ , the microscopic, detailed solution to the system. Assume that $u$ is a system of ODEs, $u \in \mathbb{R}^m$
-- $\mathcal{T}_d$ , the detailed timestepper - equation that provides the microscopic solution
-- $\mathcal{T}_d^t = u(s + t)$, the detailed timestepper mapping the system state at time $s$ to the state at time $s+t$
-- $U \in \mathbb{R}^M$, $M \ll m$, the selected coarse description of the system. E.g. in a gas simulation: pressure, density, velocity.
-- $\mathcal{M}$, the _restriction_ operator. Maps a microscopic state $u$ to the corresponding macroscopic state $U$ such that $U = \mathcal{M}u$
-- $\mu$ , the _lifting_ operator. Maps a macroscopic state $U$ onto a consistent microscopic state $u$ such that $\mathcal{M}\mu = I$. This means, _lifting_ is fully reversible through _restriction_.
-Note, that in most cases $\mu$ is not unique. This is due to multiple realizability of the system (e.g. two different pairs of velocities can map onto the same average velocity.)
-
-The idea here is that if $U$ describes the macroscopic system successfully, the remaining system quantities should be approximable as functions of $U$.
-That means, we should be able to map from $U$ onto a $m$-dimensional manifold approximating $u$. On this manifold, the components of U would vary slowly.
-We further define:
-
-- $\mathcal{T}_c^\tau$ , The coarse timestepper. Equation that governs the macroscopic dynamics. We **don't** have a closed form solution for this.
-- $\tau > 0$ , the time horizon of the coarse stepper. Choose small enough that it is tractable to calculate $\mathcal{T}_d^{\tau}$, but long enough for the macroscopic dynamics to evolve meaningfully
-
-Using the given definitions, we can further define the coarse timestepper $\mathcal{T}_c^\tau$ as:
-
-### $\mathcal{T}_c^\tau = \mathcal{M}\mathcal{T}_d^{\tau}\mu$
-
-
-<h1>Credits</h1>
+# Credits
 
 [1] Vlachas, P. R., Arampatzis, G., Uhler, C., & Koumoutsakos, P. (2022). Multiscale simulations of complex systems by learning their effective dynamics. Nature Machine Intelligence, 4(4), 359-366.
 
