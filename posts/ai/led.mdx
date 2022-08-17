@@ -41,8 +41,20 @@ We define:
 - $\mathcal{T}_d^t = u(s + t)$, the detailed timestepper mapping the system state at time $s$ to the state at time $s+t$
 - $U \in \mathbb{R}^M$, $M \ll m$, the selected coarse description of the system. E.g. in a gas simulation: pressure, density, velocity.
 - $\mathcal{M}$, the _restriction_ operator. Maps a microscopic state $u$ to the corresponding macroscopic state $U$ such that $U = \mathcal{M}u$
+- $\mu$ , the _lifting_ operator. Maps a macroscopic state $U$ onto a consistent microscopic state $u$ such that $\mathcal{M}\mu = I$. This means, _lifting_ is fully reversible through _restriction_.
+Note, that in most cases $\mu$ is not unique. This is due to multiple realizability of the system (e.g. two different pairs of velocities can map onto the same average velocity.)
 
-The EFF
+The idea here is that if $U$ describes the macroscopic system successfully, the remaining system quantities should be approximable as functions of $U$.
+That means, we should be able to map from $U$ onto a $m$-dimensional manifold approximating $u$. On this manifold, the components of U would vary slowly.
+We further define:
+
+- $\mathcal{T}_c^\tau$ , The coarse timestepper. Equation that governs the macroscopic dynamics. We **don't** have a closed form solution for this.
+- $\tau > 0$ , the time horizon of the coarse stepper. Choose small enough that it is tractable to calculate $\mathcal{T}_d^{\tau}$, but long enough for the macroscopic dynamics to evolve meaningfully
+
+Using the given definitions, we can further define the coarse timestepper $\mathcal{T}_c^\tau$ as:
+
+### $\mathcal{T}_c^\tau = \mathcal{M}\mathcal{T}_d^{\tau}\mu$
+
 
 <h1>Credits</h1>
 
