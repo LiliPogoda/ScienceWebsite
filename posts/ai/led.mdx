@@ -34,13 +34,46 @@ from the low level processes, the EFF presumes that we should be able to derive 
 
 # The Math behind the LED framework
 
+The architecture of the LED can be separated into two parts. The first part deals with the mapping between microscopic state and macroscopic state of the complex system. The
+second part addresses how to find the dynamics of the macroscopic state.
+
+## Learning a Map between Micro- and Macroscopic descriptions
+
 We define:
 
 - $s \in \mathbb{R}^{d_s} $ , the state of a $d_s$-dimensional dynamical system.
 - $\triangle t$ , the sampling period/step size for the discretized system equation.
 - $s_{t + \triangle t} = F(s_t)$ , a discrete mapping function $F$ that evolves the system in time. $F$ can be non-linear, stochastic or deterministic
-- $z_t \in Z, Z \subset \mathbb{R}^{d_z}, d_z \ll d_s$ , we assume that there is a lower ($d_z$-)dimensional description $z_t$ capturing the state of the system.
+- $z_t \in Z, Z \subset \mathbb{R}^{d_z}, d_z \ll d_s$ , we assume that there is a lower ($d_z$-)dimensional description $z_t$ capturing the state of the system. I.e. there is a latent structure underlying the high-dimensional representation.
+- $\mathcal{E}^{w_{\mathcal{E}}}: \mathbb{R}^{d_s} \to \mathbb{R}^{d_z}, z_t = \mathcal{E}^{w_{\mathcal{E}}}(s_t)$ , an _Encoder_ $\mathcal{E}$ that transforms a high-dimensional state $s_t$ into a low-dimensional (latent) description $z_t$.
+- $\mathcal{D}^{w_{\mathcal{D}}}: \mathbb{R}^{d_z} \to \mathbb{R}^{d_s}, \tilde{s}_t = \mathcal{D}^{w_{\mathcal{D}}}(z_t)$ , a _Decoder_ $\mathcal{D}$ that transforms the latent representation back into the microscopic state.
 
+$\to$ The combination of $\mathcal{E}^{w_{\mathcal{E}}}$ and $\mathcal{D}^{w_{\mathcal{D}}}$ is achieved through an Autoencoder (AE) architecture. For systems with spatial dependence, Convolutional Autoencoders (CNN-AE) are employed. 
+
+## Learning the dynamics of the Macroscopic system
+
+The LED makes use of a Recurrent Neural Network to capture the Non-Markovian dynamics of the latent state. We define:
+
+- $\mathcal{h}_t \in \mathbb{R}^{d_h}$ , the internal $d_h$-dimensional hidden memory state of the RNN.
+- $\mathcal{H}^{w_{\mathcal{H}}}$ , the "Hidden-to-Hidden" mapping function of the RNN. It maps the previous hidden state $\mathcal{h}_{t-\triangle t}$ and the current system state $z_t$ onto a new hidden state $\mathcal{h}_t$
+
+$\to \mathcal{h}_t = \mathcal{H}^{w_{\mathcal{H}}}(z_t, \mathcal{h}_{t-\triangle t})$ 
+
+- $\mathcal{R}^{w_{\mathcal{R}}}$ , the "Hidden-to-Output" mapping function of the RNN. It maps the current hidden state $\mathcal{h}_t$ onto a new system state $z_{t+\triangle t}$
+
+$\to z_{t+\triangle t} = \mathcal{R}^{w_{\mathcal{R}}}(\mathcal{h}_t)$
+
+$w_{\mathcal{H}}$ and $w_{\mathcal{R}}$ are the trainable parameters of the RNN. To train the parameters, the model learns to minimize the prediction loss:
+
+$\to \mathcal{L}_{\text{RNN}} = ||\tilde{z}_{t+\triangle t} - z_{t+\triangle t}||^2_2$
+
+## Training Process
+
+To train this model, some kind of reference data is necessary. What we have, is data for the microscopic system. The data is obtained by running full-scale simulations of these
+microscopic systems (e.g. by simulating molecular dynamics). This data is used in two different ways:
+
+1. First train the Mapping part of the system. Then use the trained Autoencoder in order to train the RNN. (Sequential training process)
+2. Train both parts of the architecture at the same time through end-to-end training. 
 
 # Credits
 
