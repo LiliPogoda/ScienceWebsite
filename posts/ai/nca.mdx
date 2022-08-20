@@ -1,0 +1,17 @@
+---
+title: "Neural Cellular Automata"
+date: "2022-08-14"
+author: "Jan Schering"
+---
+
+# The Math behind the NCA
+
+We define the NCA as a $W \times H$ grid of $|Z|$-dimensional vectors. $|Z|$ denotes the dimensionality of the latent space,
+($H$,$W$) the height and width of the image, respectively. To get the starting state of the grid, we sample a
+latent vector $z_\theta \sim q_\phi(z|x)$ and set it as the value of each NCA cell. We simulate the evolution of the NCA for
+$T = [K,K +\triangle K]$ time steps, with $K$ being the minimum amount of steps. At each step, an additive update
+$z_{i,t} = z_{i,t-1} +u_\theta({z_{j,t-1}}j\in N(i))$ is applied to each cell $z_i$
+. $N(i)$ refers to the Moore neighborhood of cell $i$. $u_\theta$
+is the parameterized update function of the NCA. In the VNCA model, $u_\theta$ is implemented through a CNN
+with learnable parameters $\theta$. The CNN first applies a $3\times 3$ convolution and then alternates between $1\times 1$
+convolutional layers and non-linear activations. 
