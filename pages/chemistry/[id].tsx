@@ -10,7 +10,7 @@ import remarkDirective from "remark-directive";
 import remarkDirectiveRehype from "remark-directive-rehype";
 import { getAllPostIds, getPost } from "../../lib/posts";
 import LayoutPostWrapper from "../../components/layoutPostWrapper";
-import { displayLuciferase, renderMol2D } from "../../lib/molView";
+import { displayLuciferase } from "../../lib/molView";
 import { fireFlies } from "../../lib/fireflies";
 
 export default function Chemistry({ source, title, date, author }) {
@@ -18,7 +18,7 @@ export default function Chemistry({ source, title, date, author }) {
     <LayoutPostWrapper date={date} title={title} pageIdx={1}>
       <MDXRemote
         {...source}
-        scope={{ displayLuciferase, fireFlies, renderMol2D }}
+        scope={{ displayLuciferase, fireFlies }}
       />
     </LayoutPostWrapper>
   );
