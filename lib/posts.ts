@@ -71,7 +71,7 @@ export const getAllPostIds = (folder) => {
 };
 
 /**
- * Retrieve the IDs of all posts.
+ * Retrieve post.
  */
 export const getPost = async (pathToPost) => {
   const postsDirectoryPath = path.join(postsPath, `${pathToPost}.mdx`);
