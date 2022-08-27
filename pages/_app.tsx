@@ -10,6 +10,7 @@ import { Sandpack } from "@codesandbox/sandpack-react";
 import "../styles/global.css";
 import styles from "../styles/utils.module.css";
 import Button from "@mui/material/Button";
+import ShowButton from "../components/showButton";
 
 declare global {
   namespace JSX {
@@ -25,6 +26,7 @@ declare global {
 const components = {
   Button,
   Sandpack,
+  ShowButton
 };
 
 const darkTheme = createTheme({
