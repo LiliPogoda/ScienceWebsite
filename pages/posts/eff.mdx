@@ -1,9 +1,3 @@
----
-title: "EFF: The Equation-Free Framework for approximate Simulation of large complex Systems"
-date: "2022-08-14"
-author: "Jan Schering"
----
-
 For Advanced Readers: The Mechanism behind the EFF:
 
 We define:
@@ -51,3 +45,10 @@ for small spaces. We need to extend our definitions as follows:
 - $U_t = L(t, x, U, \partial_x U, \dots, \partial_x^p U)$ , U is an evolution equation of the complex system. A macroscopic state $U_t$ can be defined as some function $L$
 depending on the time $t$, space $x$, the evolution equation $U$ and its $p$ higher order derivatives. There is no closed form solution available for this equation.
 
+import LayoutPostWrapper from "../../components/layoutPostWrapper"
+
+export default ({ children }) => (
+  <LayoutPostWrapper pageIdx={2} title="EFF: The Equation-Free Framework for approximate Simulation of large complex Systems" date="2022-08-14">
+    {children}
+  </LayoutPostWrapper>
+)

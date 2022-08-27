@@ -1,0 +1,16 @@
+<link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+<script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+
+<py-env>- matplotlib</py-env>
+
+<div id="pyscriptAnchor" style={{ width: "400px" }} />
+
+<py-script src="/testFile.py"></py-script>
+
+import LayoutPostWrapper from "../../components/layoutPostWrapper"
+
+export default ({ children }) => (
+  <LayoutPostWrapper pageIdx={3} title="Pyscript Test" date="2022-08-13">
+    {children}
+  </LayoutPostWrapper>
+)

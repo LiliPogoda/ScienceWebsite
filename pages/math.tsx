@@ -1,32 +1,13 @@
 import * as React from "react";
-import { GetStaticProps } from "next";
-
-import { getSortedPostsData } from "../lib/posts";
-
 import PostList from "../components/postList";
+import posts from "../posts/posts"
 
-const categoryName = "math";
 
-export default function Chemistry({
-  allPostsData,
-}: {
-  allPostsData: {
-    date: string;
-    title: string;
-    author: string;
-    id: string;
-  }[];
-}) {
+export default function Programming() {
+
+  const [currentCategory, setCurrentCategory] = React.useState("Math")
+
   return (
-    <PostList allPostsData={allPostsData} category={categoryName} pageIdx={4} />
+    <PostList allPostsData={posts.filter(post => post.categories.includes(currentCategory))} pageIdx={3} />
   );
 }
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = await getSortedPostsData(categoryName);
-  return {
-    props: {
-      allPostsData,
-    },
-  };
-};

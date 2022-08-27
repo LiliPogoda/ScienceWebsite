@@ -1,9 +1,3 @@
----
-title: "Experimental Error"
-date: "2022-08-27"
-author: "Esther-Philine Pogoda"
----
-
 Whatever we measure in the lab...its probably wrong. Means there is always some error in our measurements.
  NO matter how carful you conduct measurements: It is impossible to measure the true value. 
  Hence there is always a uncertainty to our results. This is very uncomfortable news thinking about the fact what important things get produced in labs, from your antibiotics to the skincare products you apply on your face every morning. 
@@ -11,3 +5,11 @@ Whatever we measure in the lab...its probably wrong. Means there is always some 
 
 What seems a bit annoying at first glance and also is cause for rage attacks in many new STEM students are the the significant figures.
 Significant figures are the amount of digits in a value, in chemistry mostly a measurement, that contribute to the degree of accuracy of the value.
+
+import LayoutPostWrapper from "../../components/layoutPostWrapper"
+
+export default ({ children }) => (
+  <LayoutPostWrapper pageIdx={1} title="Experimental Error" date="2022-08-27">
+    {children}
+  </LayoutPostWrapper>
+)

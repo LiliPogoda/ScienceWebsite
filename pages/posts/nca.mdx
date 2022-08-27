@@ -1,8 +1,3 @@
----
-title: "Neural Cellular Automata"
-date: "2022-08-14"
-author: "Jan Schering"
----
 
 # The Math behind the NCA
 
@@ -15,3 +10,12 @@ $z_{i,t} = z_{i,t-1} +u_\theta({z_{j,t-1}}j\in N(i))$ is applied to each cell $z
 is the parameterized update function of the NCA. In the VNCA model, $u_\theta$ is implemented through a CNN
 with learnable parameters $\theta$. The CNN first applies a $3\times 3$ convolution and then alternates between $1\times 1$
 convolutional layers and non-linear activations. 
+
+
+import LayoutPostWrapper from "../../components/layoutPostWrapper"
+
+export default ({ children }) => (
+  <LayoutPostWrapper pageIdx={2} title="Neural Cellular Automata" date="2022-08-13">
+    {children}
+  </LayoutPostWrapper>
+)

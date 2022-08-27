@@ -1,8 +1,6 @@
 import * as React from "react";
 import Head from "next/head";
 import Layout from "../components/layout";
-import { getSortedPostsData } from "../lib/posts";
-import Link from "next/link";
 import Date from "../components/date";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
@@ -19,7 +17,6 @@ import layoutStyles from "../styles/layout.module.css";
 
 export default function PostList({
   allPostsData,
-  category,
   pageIdx,
 }: {
   allPostsData: {
@@ -28,7 +25,6 @@ export default function PostList({
     author: string;
     id: string;
   }[];
-  category: string;
   pageIdx: number;
 }) {
   return (
@@ -40,13 +36,13 @@ export default function PostList({
               {allPostsData.map(({ id, date, title, author }) => (
                 <Paper key={id}>
                   <ListItem disablePadding>
-                    <Link href={`/${category}/${id}`} passHref>
+                    <a href={`/posts/${id}`} style={{color: "black", width: "100%"}}>
                       <ListItemButton>
                         <ListItemText primary={title} />
                         {author},
                         <Date dateString={date} style={{ marginLeft: "5px" }} />
                       </ListItemButton>
-                    </Link>
+                    </a>
                   </ListItem>
                   <Divider />
                 </Paper>
