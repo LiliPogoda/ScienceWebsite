@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from "react";
-
+import Link from 'next/link'
 import { styled } from "@mui/material/styles";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -13,23 +13,24 @@ import Tab from "@mui/material/Tab";
 
 interface StyledTabProps {
   label: string;
-  href?: string;
+  href: {pathname:string, query: {tab: number, category: string}};
   component?: any;
   rel?: string;
   target?: string;
+  onClick: () => void;
+  value: number;
 }
 
 /**
  * Customized MUI Tab Element
  */
 export const StyledTab = styled((props: StyledTabProps) => (
+  <Link href={props.href} passHref>
   <Tab
-    component="a"
-    onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-      //event.preventDefault();
-    }}
-    {...props}
+    label={props.label}
+    onClick={props.onClick}
   />
+  </Link>
 ))(({ theme }) => ({
   textTransform: "none",
   fontWeight: theme.typography.fontWeightRegular,
@@ -49,7 +50,6 @@ export const StyledTab = styled((props: StyledTabProps) => (
 interface StyledTabsProps {
   children?: React.ReactNode;
   value: number;
-  onChange: (event: React.SyntheticEvent, newValue: number) => void;
 }
 
 /**
