@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import Layout from "../components/layout";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+import ConstructionIcon from '@mui/icons-material/Construction';
 import Container from "@mui/material/Container";
 import { Paper } from "@mui/material";
 import Stack from "@mui/material/Stack";
@@ -16,8 +15,13 @@ export default function Home() {
     <Layout pageIdx={0}>
       <Stack spacing={1}>
         <Paper elevation={3} style={{ opacity: "90%" }}>
-          <Container maxWidth="md" className={styles.padded}>
-            TODO
+          <Container maxWidth="xl" className={styles.padded}>
+            <div style={{marginLeft: "auto", marginRight: "auto", width: "min-content"}}>
+              <ConstructionIcon sx={{ fontSize: 100 }}/>
+            </div>
+            <div style={{marginLeft: "auto", marginRight: "auto", width: "max-content"}}>
+              This Website is currently under construction. Check back shortly for updates.
+            </div>
           </Container>
         </Paper>
       </Stack>
