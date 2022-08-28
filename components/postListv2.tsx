@@ -38,7 +38,7 @@ export default function PostListV2({
                     <CardMedia
                         component="img"
                         width="350"
-                        height="150"
+                        height="200"
                         image={post.thumbnail}
                         alt="thumbnail"
                     />
