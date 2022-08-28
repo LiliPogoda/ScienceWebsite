@@ -5,4 +5,5 @@ export type Post = {
   author: string;
   thumbnail: string;
   categories: Array<string>;
+  abstract: string;
 };

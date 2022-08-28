@@ -7,7 +7,8 @@ const posts: Array<Post> = [
         date: "2022-08-13",
         author: "Esther-Philine Pogoda",
         thumbnail: "/D-Luciferin_2D.png",
-        categories: ["Biochemistry", "Chemistry"]
+        categories: ["Biochemistry", "Chemistry"],
+        abstract: "TODO"
     },
     {
         id: "acid_base_ionproduct",
@@ -15,7 +16,8 @@ const posts: Array<Post> = [
         date: "2022-08-25",
         author: "Esther-Philine Pogoda",
         thumbnail: "TODO",
-        categories: ["Chemistry"]
+        categories: ["Chemistry"],
+        abstract: "TODO"
     },
     {
         id: "acid_base_intro",
@@ -23,7 +25,8 @@ const posts: Array<Post> = [
         date: "2022-08-23",
         author: "Esther-Philine Pogoda",
         thumbnail: "TODO",
-        categories: ["Chemistry"]
+        categories: ["Chemistry"],
+        abstract: "TODO"
     },
     {
         id: "ca_experimental_error",
@@ -31,7 +34,8 @@ const posts: Array<Post> = [
         date: "2022-08-27",
         author: "Esther-Philine Pogoda",
         thumbnail: "TODO",
-        categories: ["Chemistry"]
+        categories: ["Chemistry"],
+        abstract: "TODO"
     },
     {
         id: "pyscript_test",
@@ -39,7 +43,8 @@ const posts: Array<Post> = [
         date: "2022-08-12",
         author: "Jan Schering",
         thumbnail: "TODO",
-        categories: ["Math", "Programming"]
+        categories: ["Math", "Programming"],
+        abstract: "TODO"
     },
     {
         id: "test_code_highlight",
@@ -47,7 +52,8 @@ const posts: Array<Post> = [
         date: "2022-08-12",
         author: "Jan Schering",
         thumbnail: "TODO",
-        categories: ["Programming"]
+        categories: ["Programming"],
+        abstract: "TODO"
     },
     {
         id: "testing_sandpack",
@@ -55,7 +61,8 @@ const posts: Array<Post> = [
         date: "2022-08-12",
         author: "Jan Schering",
         thumbnail: "TODO",
-        categories: ["Programming"]
+        categories: ["Programming"],
+        abstract: "TODO"
     },
     {
         id: "nca",
@@ -63,7 +70,8 @@ const posts: Array<Post> = [
         date: "2022-08-14",
         author: "Jan Schering",
         thumbnail: "TODO",
-        categories: ["Programming", "AI"]
+        categories: ["Programming", "AI"],
+        abstract: "TODO"
     }, 
     {
         id: "led",
@@ -71,7 +79,8 @@ const posts: Array<Post> = [
         author: "Jan Schering", 
         date: "2022-08-14",
         thumbnail: "TODO",
-        categories: ["AI"]
+        categories: ["AI"],
+        abstract: "TODO"
     },
     {
         id: "eff",
@@ -79,7 +88,8 @@ const posts: Array<Post> = [
         author: "Jan Schering",
         date: "2022-08-14",
         thumbnail: "TODO",
-        categories: ["AI"]
+        categories: ["AI"],
+        abstract: "TODO"
     }
 ]
 

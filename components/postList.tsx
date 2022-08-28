@@ -27,6 +27,7 @@ export default function PostList({
   }[];
   pageIdx: number;
 }) {
+  console.log(allPostsData)
   return (
     <Layout pageIdx={pageIdx}>
       <Box sx={{ width: "100%" }}>
