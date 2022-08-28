@@ -4,10 +4,8 @@ import Date from "../components/date";
 import Box from "@mui/material/Box";
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 import utilStyles from "../styles/utils.module.css";
@@ -43,18 +41,15 @@ export default function PostListV2({
                         alt="thumbnail"
                     />
                     <CardContent>
+                        <a href={`/posts/${post.id}`} style={{color: "black"}}>
                         <Typography gutterBottom variant="h5" component="div">
                         {post.title}
                         </Typography>
+                        </a>
                         <Typography variant="body2" color="text.secondary">
                         {post.abstract}
                         </Typography>
                     </CardContent>
-                    <CardActions>
-                        <a href={`/posts/${post.id}`}>
-                            <Button size="small">Learn More</Button>
-                        </a>
-                    </CardActions>
                 </Card>
             </Grid>
             ))}
