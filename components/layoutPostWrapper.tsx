@@ -31,7 +31,7 @@ export default function LayoutPostWrapper({
         {head}
       </Head>
       <Stack spacing={1}>
-        <Paper elevation={3} style={{ opacity: "90%" }}>
+        <Paper style={{ opacity: "90%" }}>
           <Container maxWidth="xl" className={utilStyles.padded}>
             {title ? <h1 className={utilStyles.headingXl}>{title}</h1> : <></>}
             {date ? <div className={utilStyles.lightText}>

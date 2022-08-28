@@ -19,9 +19,10 @@ Even though there is less magic involved than the little me actually thought the
 Bioluminescence - The production and emission of light by living organisms.
 
 The fireflies are the most well-known and studied bioluminescent organisms. Responsible for the light production is a special enzyme-substrate system: The firefly luciferase (enzyme) and the luciferin (substrate).
-The enzyme catalyses the conversion of firefly luciferin into an oxidized exited state. When it returns to the ground state Energy in form of light is released.
+The enzyme catalyses the conversion of firefly luciferin into an oxidized exited state. When it returns to the ground state Energy in form of light is released. (Fig.1) [1]
 
 <img src="/luciferaseOverview.png" style={{height: "400px", marginRight: "auto", marginLeft: "auto"}} />
+Fig.1
 
 # The structures of the Luciferase and the Luciferin<a name="structure"></a>
 
@@ -39,6 +40,8 @@ The enzyme catalyses the conversion of firefly luciferin into an oxidized exited
 
 import {displayLuciferase} from "../../lib/molView.ts"
 
+Fig.2
+
 {displayLuciferase()}
 
 The protein structure consists of two compact domains: a larger N-terminal domain and a smaller C-terminal domain linked through a flexible linker peptide. Feel free to explore this in the Figure above.
@@ -46,15 +49,16 @@ The amino acids of the two domains that face each other in the cleft are conserv
 This is a strong pointer that the cleft is the active side of the protein where the actual catalytic reaction takes place. The cleft seems far two big for a simultaneous interactions between the residues on both sides and the the substrates.
 Hence it is suggested that both domains undergo a conformational change and close the substrate in like sandwich.
 This would provide the perfect conditions for the reaction: Water is excluded and can not react with the ATP nor the exited-state product.
-But but where and how exactly it works is yet to be determined.
+But but where and how exactly it works is yet to be determined.[2]
 
 ## The Luciferin<a name="luciferin"></a>
 
 <img src="/D-Luciferin_2D.png" style={{height: "150px", marginLeft: "auto", marginRight: "auto"}} />
 
+Fig.3
 
 
-As shown in the picture above the firefly luciferin (D-LH$_2$) consists of 2 moieties: The benzothiazol moiety on the left and the Thiazoline_carboxylic acid moiety on the right.
+As shown in the picture above the firefly luciferin (D-LH$_2$) consists of 2 moieties: The benzothiazol moiety on the left and the Thiazoline_carboxylic acid moiety on the right.[3]
 
 # Mechanism Overview<a name="mechanism_overview"></a>
 
@@ -124,13 +128,16 @@ Now through some resonance the excited version oxyanionic luciferin gets restore
 In this  step the bioluminescence gets produced so that our firefly can glow.
 
 
-TODO: Complete mechanism picture?
+
 
 Now I hope you did enjoy your journey through this mechanism and hope it left you just as much in awe as it left me. 
 
 # Credits 
-TODO: Credits 
+[1] Bai, H., Chen, W., Wu, W., Ma, Z., Zhang, H., Jiang, T., Zhang, T., Zhou, Y., Du, L., Shen, Y. and Li, M., 2015. Discovery of a series of 2-phenylnaphthalenes as firefly luciferase inhibitors. RSC advances, 5(78), pp.63450-63457.
 
+[2]Marques, S.M. and Esteves da Silva, J.C., 2009. Firefly bioluminescence: a mechanistic approach of luciferase catalyzed reactions. IUBMB life, 61(1), pp.6-17.
+
+[3]National Center for Biotechnology Information (2022). PubChem Compound Summary for CID 92934, Firefly luciferin. Retrieved August 28, 2022 from https://pubchem.ncbi.nlm.nih.gov/compound/92934.
 import LayoutPostWrapper from "../../components/layoutPostWrapper"
 
 export default ({ children }) => (
