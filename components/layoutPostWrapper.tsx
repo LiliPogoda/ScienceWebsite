@@ -8,6 +8,7 @@ import Container from "@mui/material/Container";
 import Layout from "./layout";
 import Date from "./date";
 
+import Constants from "../lib/constants";
 import utilStyles from "../styles/utils.module.css";
 
 export default function LayoutPostWrapper({
@@ -18,24 +19,24 @@ export default function LayoutPostWrapper({
   pageIdx,
 }: {
   children: React.ReactNode;
-  title: string;
-  date: string;
+  title?: string;
+  date?: string;
   head?: React.ReactNode;
   pageIdx: number;
 }) {
   return (
     <Layout pageIdx={pageIdx}>
       <Head>
-        <title>{title}</title>
+        <title>{title || Constants.SITE_TITLE}</title>
         {head}
       </Head>
       <Stack spacing={1}>
         <Paper elevation={3} style={{ opacity: "90%" }}>
           <Container maxWidth="xl" className={utilStyles.padded}>
-            <h1 className={utilStyles.headingXl}>{title}</h1>
-            <div className={utilStyles.lightText}>
+            {title ? <h1 className={utilStyles.headingXl}>{title}</h1> : <></>}
+            {date ? <div className={utilStyles.lightText}>
               <Date dateString={date} />
-            </div>
+            </div> : <></>}
             {children}
           </Container>
         </Paper>

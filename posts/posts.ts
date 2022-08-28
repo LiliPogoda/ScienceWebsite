@@ -43,7 +43,7 @@ const posts: Array<Post> = [
         date: "2022-08-12",
         author: "Jan Schering",
         thumbnail: "TODO",
-        categories: ["Math", "Programming"],
+        categories: ["Playground"],
         abstract: "TODO"
     },
     {
@@ -52,7 +52,7 @@ const posts: Array<Post> = [
         date: "2022-08-12",
         author: "Jan Schering",
         thumbnail: "TODO",
-        categories: ["Programming"],
+        categories: ["Playground"],
         abstract: "TODO"
     },
     {
@@ -61,7 +61,7 @@ const posts: Array<Post> = [
         date: "2022-08-12",
         author: "Jan Schering",
         thumbnail: "TODO",
-        categories: ["Programming"],
+        categories: ["Playground"],
         abstract: "TODO"
     },
     {
@@ -70,7 +70,7 @@ const posts: Array<Post> = [
         date: "2022-08-14",
         author: "Jan Schering",
         thumbnail: "TODO",
-        categories: ["Programming", "AI"],
+        categories: ["WIP"],
         abstract: "TODO"
     }, 
     {
@@ -79,7 +79,7 @@ const posts: Array<Post> = [
         author: "Jan Schering", 
         date: "2022-08-14",
         thumbnail: "TODO",
-        categories: ["AI"],
+        categories: ["WIP"],
         abstract: "TODO"
     },
     {
@@ -88,7 +88,7 @@ const posts: Array<Post> = [
         author: "Jan Schering",
         date: "2022-08-14",
         thumbnail: "TODO",
-        categories: ["AI"],
+        categories: ["WIP"],
         abstract: "TODO"
     }
 ]

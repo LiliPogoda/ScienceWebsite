@@ -1,5 +1,5 @@
 const META_DESCRIPTION = "Chemistry, AI and programming education";
-const SITE_TITLE = "Nature Science & Programming";
+const SITE_TITLE = "Izumi - Nature Science & Programming education";
 
 const INFO_HTML5 = "Your browser does not support HTML5 video.";
 
