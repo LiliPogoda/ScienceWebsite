@@ -8,7 +8,7 @@ const posts: Array<Post> = [
         author: "Esther-Philine Pogoda",
         thumbnail: "/D-Luciferin_2D.png",
         categories: ["Biochemistry", "Chemistry"],
-        abstract: "TODO"
+        abstract: "What makes fireflies glow? Find out about the chemical process and its beauty behind it"
     },
     {
         id: "acid_base_ionproduct",
