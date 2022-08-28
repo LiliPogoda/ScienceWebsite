@@ -6,7 +6,7 @@ const posts: Array<Post> = [
         title: "Firefly Luciferase",
         date: "2022-08-13",
         author: "Esther-Philine Pogoda",
-        thumbnail: "/D-Luciferin_2D.png",
+        thumbnail: "fireflies.png",
         categories: ["Biochemistry", "Chemistry"],
         abstract: "What makes fireflies glow? Find out about the chemical process and its beauty behind it"
     },
