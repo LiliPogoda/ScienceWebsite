@@ -24,22 +24,23 @@ interface StyledTabProps {
 /**
  * Customized MUI Tab Element
  */
-export const StyledTab = styled((props: StyledTabProps) => (
+export const StyledTab = (props: StyledTabProps) => (
   <Link href={props.href} passHref>
   <Tab
     label={props.label}
     onClick={props.onClick}
+    sx={{
+      color: "black", 
+      opacity: "100%",
+      textTransform: "none",
+      fontFamily: "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
+      fontSize: "1.2rem",
+      fontWeight: "600",
+      lineHeight: "2.5"
+    }}
   />
   </Link>
-))(({ theme }) => ({
-  textTransform: "none",
-  fontWeight: theme.typography.fontWeightRegular,
-  fontSize: theme.typography.pxToRem(15),
-  marginRight: theme.spacing(1),
-  "&.Mui-focusVisible": {},
-  "&.MuiTab-textColorPrimary": {},
-  "&.Mui-selected": {},
-}));
+)
 
 /**
  *
