@@ -29,13 +29,13 @@ export default function PostListV2({
   return (
     <Layout pageIdx={pageIdx}>
       <Box sx={{ width: "100%" }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid container spacing={3}>
             {allPostsData.map(post => (
             <Grid item key={post.id}>
-                <Card elevation={3} sx={{ maxWidth: 350, height: 350 }}>
+                <Card elevation={3} sx={{ maxWidth: 315, height: 400 }}>
                     <CardMedia
                         component="img"
-                        width="350"
+                        width="313"
                         height="200"
                         image={post.thumbnail}
                         alt="thumbnail"
