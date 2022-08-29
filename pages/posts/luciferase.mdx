@@ -2,9 +2,9 @@
 
 # Table of Contents
 :::div{style="background-color: lightgray; width: max-content; padding-right: 5px"}
-1. [:div[The structures of the Luciferase and the Luciferin]{style="color:black"}](#structure)
-    * [:div[The Luciferase]{style="color:black"}](#luciferase)
-    * [:div[The Luciferin]{style="color:black"}](#luciferin)
+1. [:div[The structures of Luciferase and Luciferin]{style="color:black"}](#structure)
+    * [:div[Luciferase]{style="color:black"}](#luciferase)
+    * [:div[Luciferin]{style="color:black"}](#luciferin)
 2. [:div[Mechanism Overview]{style="color:black"}](#mechanism_overview)
 3. [:div[In-Depth Discussion of the Mechanism]{style="color:black"}](#mechanism_in_depth)
 :::
@@ -14,23 +14,28 @@ import {fireFlies} from "../../lib/fireFlies"
 {fireFlies({"number_flies": 300,})}
 
 Sadly these dazzling beetles and their famous lights are vanishing all around our planet.
-This is due to loss of their natural habitat, pesticides and light pollution. This thought is quite saddening as they and especially their ability to glow was always something that kept me wondering when I was small.
-Even though there is less magic involved than the little me actually thought the actual chemical process is still a very magical one:
+This is due to loss of their natural habitat, pesticides and light pollution. (I am quite saddened by this thought, as...) <del>This thought is quite saddening as</del> they and especially their ability to glow was always something that <del>kept me wondering</del> (amazed, bewildered, astonished) when I was small.
+Even though there is less magic involved than the little me thought, the actual chemical process is still a very magical one:
 Bioluminescence - The production and emission of light by living organisms.
 
-The fireflies are the most well-known and studied bioluminescent organisms. Responsible for the light production is a special enzyme-substrate system: The firefly luciferase (enzyme) and the luciferin (substrate). (TODO: do i have to explain substrate and enzyme)
-The enzyme catalyses the conversion of firefly luciferin into an oxidized exited state. Excited state in chemistry means that electrons moved to a higher energy level or in other words further away from the nucleus (the positive charged centre of the atom). You can read more about excitation here. When it returns to the ground state Energy in form of light is released. (Fig.1) [1] 
+Fireflies are the most well-known and studied bioluminescent organisms. Responsible for the light production is a special enzyme-substrate system: The firefly Luciferase (enzyme) and the Luciferin (substrate). (TODO: do i have to explain substrate and enzyme? - Yes Please!)
+The enzyme catalyses the conversion of firefly Luciferin into an oxidized excited state. Excited state in chemistry means that electrons moved to a higher energy level, or in other words further away from the nucleus (the positive charged centre of the atom). You can read more about excitation here. When it returns to the ground state Energy in form of light is released [1]. 
+(Fig.1) provides a high-level depiction of this process.
 
-It appears that the glowing itself has several purposes: In larvae it functions as a warning sign for predators to communicate their distastefulness. In adults many different glow patterns are observed. 
-These different patterns serve to differentiate between species as well as for mating purposes. [2] Interestingly there is also a dark sight to their light communication: Sometimes the females of certain species,
-emit light to lure in males in order to eat them up: They do so by imitating the flash sequence of females of another species which then attracts the males of that species. [3]
+It appears that the glowing itself has several purposes: In larvae it functions as a warning sign for predators to communicate their distastefulness. In adults, many different glow patterns are observed. 
+These different patterns serve to differentiate between species, as well as for mating purposes [2]. Interestingly, there is also a dark side to their light communication: Sometimes the females of certain species
+emit light to lure in males in order to eat them up. They do so by imitating the flash sequence of females of another species, which then attracts the males of that species [3].
+
+<figure>
 <img src="/luciferaseOverview.png" style={{height: "400px", marginRight: "auto", marginLeft: "auto"}} />
-Fig.1
+<figcaption>Fig.1: The basic mechanism behind the glowing.</figcaption>
+</figure>
 
-# The structures of the Luciferase and the Luciferin<a name="structure"></a>
+# The structures of Luciferase and Luciferin<a name="structure"></a>
 
-## The Luciferase<a name="luciferase"></a>
+## Luciferase<a name="luciferase"></a>
 
+<figure>
 <div
   id="container-01"
   className={"mol-container"}
@@ -40,100 +45,116 @@ Fig.1
     position: "relative",
   }}
 ></div>
+<figcaption>Fig.2: Interactive model to explore the structure of Luciferase.</figcaption>
+</figure>
 
 import {displayLuciferase} from "../../lib/molView.ts"
 
-Fig.2
-
 {displayLuciferase()}
 
-The protein structure consists of two compact domains: a larger N-terminal domain and a smaller C-terminal domain linked through a flexible linker peptide. Feel free to explore this in the Figure above.
-The amino acids of the two domains that face each other in the cleft are conserved(TODO: explain) in the superfamily of adenylate forming enzymes.
-This is a strong pointer that the cleft is the active side of the protein where the actual catalytic reaction takes place.The cleft seems far two big for a simultaneous interactions between the residues on both sides and the the substrates.
-Hence it is suggested that both domains undergo a conformational change and close the substrate in like sandwich. A conformational change describes the process of a protein changing its shape. In this case in order to fit the substrate.
-This would provide the perfect conditions for the reaction: Water is excluded and can not react with the ATP nor the exited-state product.
-But but where and how exactly it works is yet to be determined.[2]
+The protein structure consists of two compact domains: a larger N-terminal domain and a smaller C-terminal domain linked through a flexible linker peptide. Feel free to explore this in (Fig.2) above.
+Luciferase is part of the adenylate forming superfamily of enzymes. In this superfamily, the amino acids of the two domains that face each other in the cleft are conserved(TODO: explain).
+(The conservation)<del>This</del> is a strong pointer that the cleft is the active site of the protein where the actual catalytic reaction takes place. The cleft (as you can see in the model) seems far too big for simultaneous interactions between the residues on both sides and the substrates.
+Hence, it is suggested that both domains undergo a conformational change and close the substrate in like a sandwich. A conformational change describes the process of a protein changing its shape. In this case, in order to fit the substrate.
+This would provide the perfect conditions for the reaction: Water is excluded and cannot react with the Adenosinetriphosphate (ATP) nor the excited-state product.
+But where and how exactly it works is yet to be determined [2].
 
-## The Luciferin<a name="luciferin"></a>
+## Luciferin<a name="luciferin"></a>
 
+<figure>
 <img src="/D-Luciferin_2D.png" style={{height: "150px", marginLeft: "auto", marginRight: "auto"}} />
+<figcaption>Fig.3: Structure of the Luciferin.</figcaption>
+</figure>
 
-Fig.3
 
-
-As shown in the picture above the firefly luciferin (D-LH$_2$) consists of 2 moieties: The benzothiazol moiety on the left and the Thiazoline_carboxylic acid moiety on the right.[3]
+As shown in (Fig.3) above, the firefly luciferin ($\text{D-LH}_2$) consists of 2 moieties (parts): The Benzothiazol moiety on the left and the Thiazoline-carboxylic acid moiety on the right.[3]
 
 # Mechanism Overview<a name="mechanism_overview"></a>
 
-The chemical reaction can roughly be divided two steps:
+The chemical reaction can roughly be divided into two steps:
 
-:::div{class="box"}
+:::div{class="box" style="padding-right: 5px"}
 
 1. $\text{Luciferase} + \text{ATP-Mg}^+ + \text{D-LH}_2 \to \text{Luciferase} + \text{LH}_2\text{-AMP} + \text{PP}_i-\text{Mg}^+$
 
 :::
 
-In the first step the firefly luciferase catalyses the reaction of luciferin(D-LH$_2$) and Adenosintriphosphate (ATP). That forms Luciferyl adenylate (LH$_2$-AMP).
+In the first step, the firefly Luciferase catalyses the reaction of Luciferin($\text{D-LH}_2$) and Adenosintriphosphate ($\text{ATP}$). That forms Luciferyl adenylate ($\text{LH}_2\text{-AMP}$).
 
-:::div{class="box"}
+:::div{class="box" style="padding-right: 5px"}
 
 2. $\text{LH}_2\text{-AMP} + \text{O}_{2} \to \text{OL} + \text{AMP} + \text{CO}_2 + \text{\textit{light}} $
 
 :::
 
-The Luciferyl adenylate undergoes oxidation - it reacts with oxygen - and cyclization (the formation of one or more rings in the chemical compound). The resulting product is Dioxetanone. The decomposition of the Dioxetanone intermediate is the essential part for light emission.
-But how exactly the dioxetanone gets decomposed is still a subject of debate as there are multiple mechanisms suggested. Generally, its suggested
-that the dioxetanone undergoes a decarboxylation reaction - a reaction where the Carboxylgroup (-COOH) of the compound gets removed and gets released as CO$_2$ as a product Fig.(TODO) - to yield the excited, oxyluciferin(OL$^*$) as well as Carbondioxide and Adenosinemonophosphate (AMP).
-As soon as the excited Oxyluciferin returns to a relaxed ground state(OL) the emission of light takes place.
-A green to yellow bioluminescent light gets emitted. This is what makes the fireflies glow.[4] TODO: do I need a figure here already?
+The Luciferyl adenylate then undergoes oxidation - it reacts with oxygen - and cyclization (the formation of one or more rings in the chemical compound). The resulting product is Dioxetanone. The decomposition of the Dioxetanone intermediate is the essential part for light emission.
+How exactly the Dioxetanone gets decomposed is still a subject of debate, as there are multiple mechanisms suggested. Generally, it's suggested
+that the Dioxetanone undergoes a decarboxylation reaction - a reaction where the Carboxylgroup ($\text{-COOH}$) (TODO: Link) of the compound gets removed and gets released as $\text{CO}_2$ as a product Fig.(TODO). This yields the excited Oxyluciferin($\text{OL}^*$) as well as Carbondioxide and Adenosinemonophosphate ($\text{AMP}$).
+As soon as the excited Oxyluciferin returns to a relaxed ground state ($\text{OL}$), the emission of light takes place.
+A green to yellow bioluminescent light gets emitted. This is what makes the fireflies glow [4]. TODO: do I need a figure here already?
 
-If this description until now kept you on the edge of your seat... there is the full mechanism broken down in detail for you ahead. 
-The detailed description will assume some knowledge about the basics of organic chemistry. But even if there are some holes in your knwoledge about organic chemistry it is worth taking a look.
-And for more in depth explanation about the chemistry you can take a peek into the OC section here(TODO:link)
+If the description until now kept you on the edge of your seat... there is the full mechanism broken down in more detail for you ahead. 
+The detailed description will assume some knowledge about the basics of organic chemistry. But even if there are some holes in your knwoledge about organic chemistry, it is worth taking a look.
+For more in depth explanations about the chemistry you can take a peek into the OC section here(TODO:link).
 
 # In-Depth Discussion of the Mechanism<a name="mechanism_in_depth"></a>
 
+<figure>
 <img src="/reaction1.png" />
+<figcaption>Fig.4: Visualizing the adenylation step in the chemical process.</figcaption>
+</figure>
 
-The first step is the adenylation step. The luciferase catalyses a S$_N$2 reaction (TODO:link article SN2) of luciferin and ATP: The oxygen acts as nucleophile and 
-attacks the highly electrophilic alpha phosphate of ATP. This leads to the displacement of the inorganic Pyrophosphate, which is by the way an exellent leaving group!
+The first step is the adenylation step. The luciferase catalyses a $\text{S}_N\text{2}$ reaction (TODO:link article SN2) of Luciferin and ATP: The oxygen acts as the nucleophile and 
+attacks the highly electrophilic alpha phosphate of ATP. This leads to the displacement of the inorganic Pyrophosphate, which is by the way an excellent leaving group!
 TODO: Link to explanation of SN2 mechanism.
 Why the Magnesium-coordination?
 Its actually a very common strategy also used in the synthesis of DNA/RNA. (TODO: RNA/DNA synthesis)
-In this cae it enhances the electrophilicity of the alpha phosphorus atom as well as the stabilization of the Pyrophosphate by shielding the negative charges and
+In this case it enhances the electrophilicity of the alpha phosphorus atom, as well as the stabilization of the Pyrophosphate. It achieves this by shielding the negative charges and
 influencing the conformation of the phosphate groups. (TODO: what is meant here by influencing the conformation.)
 
+<figure>
 <img src="/reaction2.png" />
-The presence of the AMP substantially increases the acidity of Proton on Carbon-4 of the thiazoline ring. 
-This happens because it is delocalising the negative charge that would result from its abstraction.
-Now thats exactly why the luciferase catalyses the deprotonation that yields an Carbanion at carbon-4. This carbanion is stabelized not only by the AMP but also by
-its conjugated system to its left.
-Now the oxidative step happens: The carbanion attacks molecular oxygen to form hydrperoxide. 
+<figcaption>Fig.5: Visualizing the (TODO) step.</figcaption>
+</figure>
 
+The presence of AMP substantially increases the acidity of the proton on Carbon-4 of the Thiazoline ring. This happens, because it is delocalising the negative charge that would result from its abstraction.
+That's exactly why the Luciferase catalyses the deprotonation that yields a Carbanion at carbon-4. This Carbanion is stabilized not only by the AMP, but also by
+the conjugated system to its left. Now the oxidative step happens: The carbanion attacks molecular oxygen to form Hydroperoxide. 
 
+<figure>
 <img src="/reaction3.png" />
-Now the Hydroperoxide attacks the carbonylcarbon and they form a 4-membered ring. This is a favorable process, because of the nucleophilic acyl substitution and the 
-loss of AMP, which is a very good leaving group. We end up with an alpha-peroxy lactone (a dioxetanone). As I mentioned earlier: The dioxetanone is a high enegery inermediate and a conserved motif
-in many reactions involving chemiluminescence.
+<figcaption>Fig.6: TODO</figcaption>
+</figure>
 
+The Hydroperoxide attacks the Carbonylcarbon and they form a 4-membered ring. This is a favorable process, because of the nucleophilic acyl substitution and the 
+loss of AMP, which is a very good leaving group. We end up with an alpha-peroxy lactone (a Dioxetanone). As I mentioned earlier: The Dioxetanone is a high energy intermediate and a conserved motif
+in many reactions involving Chemiluminescence. The exact mechanism of the decomposition of Dioxetanone is still in debate. The following steps will showcase one of the suggested approaches.
+
+<figure>
 <img src="/reaction4.png" />
-Nevertheless the exact mechanism of the decomposition of dioxatanone is still in debate. The following steps will showcase one of the suggested approaches.
-It is suggested that through Resonance the rightmost nitrogen atom gets an anionic character. So it can then participate in a radical reaction: 
-The high energy peroxide bond gets cleaved homolytically and one electron from the Nitrogen gets donated to the Oxygen on Carbon-4 so that we end up up with the diradical shown above.
-   
+<figcaption>Fig.7: TODO</figcaption>
+</figure>
 
+It is suggested that through Resonance the rightmost Nitrogen atom gets an anionic character. It can then participate in a radical reaction: 
+The high energy Peroxide bond gets cleaved homolytically and one electron from the Nitrogen gets donated to the Oxygen on Carbon-4 so that we end up up with the diradical shown in (Fig.7) above.
+   
+<figure>
 <img src="/reaction5.png" />
-The diradical is very unstable and undergoes spontanous decarboxylation yielding carbondioxide. Now the exited oxyluciferin was formed. The exited The exited state is marked by the green box.
+<figcaption>Fig.8: TODO</figcaption>
+</figure>
+
+The diradical is very unstable and undergoes spontanous decarboxylation yielding Carbondioxide. Now the excited Oxyluciferin is formed. The excited state is marked by the green box in (Fig.8).
 The two unpaired electrons combine. The version above is the keto version but the formation of the enol version is possible as well.
 
+<figure>
 <img src="/reaction6.png" />
-Now through some resonance the excited version oxyanionic luciferin gets restored. Which then falls back into the ground state emitting a photon.
-In this  step the bioluminescence gets produced so that our firefly can glow.[5]
+<figcaption>Fig.9: TODO</figcaption>
+</figure>
 
+Now, through some resonance, the excited version oxyanionic Luciferin gets restored. It then falls back into the ground state, emitting a photon.
+In this step, the bioluminescence gets produced so that our firefly can glow [5].
 
-
-
-Now I hope you did enjoy your journey through this mechanism and hope it left you just as much in awe as it left me. 
+As we have reached the end, I hope you did enjoy your journey through this mechanism and that it left you just as much in awe as it left me. 
 
 # Credits 
 [1] Bai, H., Che4n, W., Wu, W., Ma, Z., Zhang, H., Jiang, T., Zhang, T., Zhou, Y., Du, L., Shen, Y. and Li, M., 2015. Discovery of a series of 2-phenylnaphthalenes as firefly luciferase inhibitors. RSC advances, 5(78), pp.63450-63457.
