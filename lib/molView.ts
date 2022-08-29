@@ -6,7 +6,7 @@ export const displayLuciferase = () => {
   let $3Dmol = (window as any).$3Dmol;
   $(function () {
     let element = $("#container-01");
-    let config = { backgroundColor: "orange" };
+    let config = { backgroundColor: "lightgray" };
     let viewer = $3Dmol.createViewer(element, config);
     const pdbUri = "/1lci.pdb";
     jQuery.ajax(pdbUri, {
