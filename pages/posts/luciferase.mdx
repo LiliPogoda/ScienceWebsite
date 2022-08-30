@@ -15,11 +15,11 @@ import {fireFlies} from "../../lib/fireFlies"
 {fireFlies({"number_flies": 300,})}
 
 Sadly these dazzling beetles and their famous lights are vanishing all around our planet.
-This is due to loss of their natural habitat, pesticides and light pollution. (I am quite saddened by this thought, as...) <del>This thought is quite saddening as</del> they and especially their ability to glow was always something that <del>kept me wondering</del> (amazed, bewildered, astonished) when I was small.
+This is due to loss of their natural habitat, pesticides and light pollution. I am quite saddened by this thought, as they and especially their ability to glow was always something that kept me amazed and bewildered when I was small.
 Even though there is less magic involved than the little me thought, the actual chemical process is still a very magical one:
 Bioluminescence - The production and emission of light by living organisms.
 
-Fireflies are the most well-known and studied bioluminescent organisms. Responsible for the light production is a special enzyme-substrate system: The firefly Luciferase (enzyme) and the Luciferin (substrate). (TODO: do i have to explain substrate and enzyme? - Yes Please!)
+Fireflies are the most well-known and studied bioluminescent organisms. Responsible for the light production is a special enzyme-substrate system: The firefly Luciferase (enzyme) and the Luciferin (substrate). Enzymes are Proteins that act as a catalyst in biological reactions: They accelerate them but do not alter them. The molecule they are converting is called the substrate.
 The enzyme catalyses the conversion of firefly Luciferin into an oxidized excited state. Excited state in chemistry means that electrons moved to a higher energy level, or in other words further away from the nucleus (the positive charged centre of the atom). You can read more about excitation here. When it returns to the ground state Energy in form of light is released [1]. 
 (Fig.1) provides a high-level depiction of this process.
 
@@ -53,9 +53,10 @@ import {displayLuciferase} from "../../lib/molView.ts"
 
 {displayLuciferase()}
 
-The protein structure consists of two compact domains: a larger N-terminal domain and a smaller C-terminal domain linked through a flexible linker peptide. Feel free to explore this in (Fig.2) above.
-Luciferase is part of the adenylate forming superfamily of enzymes. In this superfamily, the amino acids of the two domains that face each other in the cleft are conserved(TODO: explain).
-(The conservation)<del>This</del> is a strong pointer that the cleft is the active site of the protein where the actual catalytic reaction takes place. The cleft (as you can see in the model) seems far too big for simultaneous interactions between the residues on both sides and the substrates.
+The protein structure consists of two compact domains: a larger N-terminal domain and a smaller C-terminal domain linked through a flexible linker peptide. Feel free to explore this in (Fig.2) above. And for more background knowledge about Aminoacids and Protein feel free to explore here.(TODO:link)
+Luciferase is part of the adenylate forming (see below in the 1st reaction equation) superfamily of enzymes. In this superfamily, the amino acids of the two domains that face each other in the cleft are conserved. What does conserved mean? Nucleic acid (DNA/RNA) sequences
+or like in this case and Aminoacid sequence can be identical or similar across species or within a genome. These sequences are called conserved sequences. These sequences have been maintained through evolution by natural selection. 
+The conservation is a strong pointer that the cleft is the active site of the protein where the actual catalytic reaction takes place. The cleft (as you can see in the model) seems far too big for simultaneous interactions between the residues on both sides and the substrates.
 Hence, it is suggested that both domains undergo a conformational change and close the substrate in like a sandwich. A conformational change describes the process of a protein changing its shape. In this case, in order to fit the substrate.
 This would provide the perfect conditions for the reaction: Water is excluded and cannot react with the Adenosinetriphosphate (ATP) nor the excited-state product.
 But where and how exactly it works is yet to be determined [2].
