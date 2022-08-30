@@ -1,14 +1,22 @@
 <img src="/firefly3.jpg" style={{height: "400px", width: "100%", marginLeft: "auto", marginRight: "auto"}}/>
 
-# Table of Contents
-:::div{style="background-color: lightgray; width: max-content; padding-right: 5px"}
-1. [:div[The structures of Luciferase and Luciferin]{style="color:black"}](#structure)
-    * [:div[Luciferase]{style="color:black"}](#luciferase)
-    * [:div[Luciferin]{style="color:black"}](#luciferin)
-2. [:div[Mechanism Overview]{style="color:black"}](#mechanism_overview)
-3. [:div[In-Depth Discussion of the Mechanism]{style="color:black"}](#mechanism_in_depth)
-4. [:div[Credits]{style="color:black"}](#credits)
-:::
+import TOC from "../../components/toc"
+
+export const toc = [
+  {
+    anchor: "structure",
+    title: "The structures of Luciferase and Luciferin",
+    children: [
+      { anchor: "luciferase", title: "Luciferase"},
+      { anchor: "luciferin", title: "Luciferin"}
+    ]
+  },
+  {anchor: "mechanism_overview", title: "Mechanism Overview"},
+  {anchor: "mechanism_in_depth", title: "In-Depth Discussion of the Mechanism"},
+  {anchor: "credits", title: "Credits"}
+]
+
+<TOC toc={toc} />
 
 import {fireFlies} from "../../lib/fireFlies"
 
