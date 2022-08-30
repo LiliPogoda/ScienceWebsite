@@ -3,12 +3,12 @@ import { Post } from "../types/post";
 const posts: Array<Post> = [
     {
         id: "luciferase",
-        title: "Firefly Luciferase",
+        title: "How do Fireflies glow?",
         date: "2022-08-13",
         author: "Esther-Philine Pogoda",
         thumbnail: "fireflies.png",
         categories: ["Biochemistry", "Chemistry"],
-        abstract: "What makes fireflies glow? Find out about the chemical process and its beauty behind it"
+        abstract: "What makes fireflies glow? Find out about the chemical process and the astonishing beauty behind it."
     },
     {
         id: "acid_base_ionproduct",
