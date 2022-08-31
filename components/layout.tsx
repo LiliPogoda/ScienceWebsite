@@ -3,6 +3,7 @@ import * as React from "react";
 import Head from "next/head";
 import Container from "@mui/material/Container";
 import NavTabs from "../components/navTabs";
+import Stack from "@mui/material/Stack";
 
 import Constants from "../lib/constants";
 
@@ -45,7 +46,10 @@ export default function Layout({
       </header>
       <main className={styles.relative} style={{zIndex: "1"}}>
         <Container maxWidth="lg" className={utilStyles.mainContainer}>
-          {children}
+          <Stack spacing={1}>
+            {children}
+            <footer style={{color: "gray", position: "relative", bottom: 0}}><small>&copy; Copyright 2022, Jan Schering & Esther-Philine Dorsch</small></footer> 
+          </Stack>
         </Container>
       </main>
     </div>

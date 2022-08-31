@@ -16,7 +16,7 @@ const posts: Array<Post> = [
         date: "2022-08-25",
         author: "Esther-Philine Pogoda",
         thumbnail: "TODO",
-        categories: ["Chemistry"],
+        categories: ["WIP"],
         abstract: "TODO"
     },
     {
@@ -25,7 +25,7 @@ const posts: Array<Post> = [
         date: "2022-08-23",
         author: "Esther-Philine Pogoda",
         thumbnail: "TODO",
-        categories: ["Chemistry"],
+        categories: ["WIP"],
         abstract: "TODO"
     },
     {
@@ -34,7 +34,7 @@ const posts: Array<Post> = [
         date: "2022-08-27",
         author: "Esther-Philine Pogoda",
         thumbnail: "TODO",
-        categories: ["Chemistry"],
+        categories: ["WIP"],
         abstract: "TODO"
     },
     {
