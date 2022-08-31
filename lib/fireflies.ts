@@ -4,9 +4,14 @@
 
 export const fireFlies = (function () {
   function checkCss() {
-    if (document.styleSheets.length === 0) {
-      document.head.innerHTML += "<style></style>";
+    var head = document.head || document.getElementsByTagName("head")[0]
+    var style = document.createElement("style");
+    var containerOld = document.getElementById("fireflies");
+    if (containerOld) {
+      document.head.removeChild(containerOld)
     }
+    style.id = "fireflies";
+    head.appendChild(style);
   }
 
   function randomTranslate(position, max) {
@@ -17,82 +22,44 @@ export const fireFlies = (function () {
     var keyframe_percent = Math.floor(Math.random() * 40);
     var keyframe_percent2 = 50 + Math.floor(Math.random() * 40);
     var plus_minus = 3;
-    return (
-      "\
-      @keyframes " +
-      class_name +
-      " {\
-        50% {\
-          transform: translate(" +
-      (x > 0 ? -width : width) +
-      "px, " +
-      randomTranslate(y, height) +
-      "px);\
-        }\
-        " +
-      keyframe_percent +
-      "% {\
-          opacity: 1;\
-        }\
-        " +
-      (keyframe_percent - plus_minus) +
-      "% {\
-          opacity: 0;\
-        }\
-        " +
-      (keyframe_percent + plus_minus) +
-      "% {\
-          opacity: 0;\
-        }\
-        " +
-      keyframe_percent2 +
-      "% {\
-          opacity: 1;\
-        }\
-        " +
-      (keyframe_percent2 - plus_minus) +
-      "% {\
-          opacity: 0;\
-        }\
-        " +
-      (keyframe_percent2 + plus_minus) +
-      "% {\
-          opacity: 0;\
-        }\
-      }"
-    );
+    return `@keyframes ${class_name} {
+      50% {
+        transform: translate(${x > 0 ? -width : width}px, ${randomTranslate(y, height)}px);
+      }
+      ${keyframe_percent}% {
+        opacity: 1;
+      }
+      ${(keyframe_percent - plus_minus)}% {
+        opacity: 0;
+      }
+      ${(keyframe_percent + plus_minus)}% {
+        opacity: 0;
+      }
+      ${keyframe_percent2}% {
+        opacity: 1;
+      }
+      ${(keyframe_percent2 - plus_minus)}% {
+        opacity: 0;
+      }
+      ${(keyframe_percent2 + plus_minus)}% {
+        opacity: 0;
+      }
+    }
+    `
   }
 
   function ruleFactory(rule_name, duration, size, color, animation_name, x, y) {
-    return (
-      "\
-      ." +
-      rule_name +
-      " {\
-        position: absolute;\
-        top: " +
-      y +
-      "px;\
-        left: " +
-      x +
-      "px;\
-        color: " +
-      color +
-      ";\
-        text-shadow: 0 0 3px " +
-      color +
-      ";\
-        font-size: " +
-      size +
-      "px;\
-        opacity: 0;\
-        animation: " +
-      animation_name +
-      " " +
-      duration +
-      " linear infinite;\
-      }"
-    );
+    return `.${rule_name} {
+      position: absolute;
+      top: ${y}px;
+      left: ${x}px;
+      color: ${color};
+      font_size: ${size}px;
+      opacity: 0;
+      animation: ${animation_name} ${duration} linear infinite;
+    }
+    
+    `
   }
 
   function hatchFlies(config) {
@@ -123,14 +90,19 @@ export const fireFlies = (function () {
       var duration = 5 + Math.random() * 60 + "s";
       var x = Math.random() < 0.5 ? 0 : width;
       var y = Math.floor(Math.random() * height);
-      document.styleSheets[0].insertRule(
-        ruleFactory(class_name, duration, size, color, animation_name, x, y),
-        0
+      var cssRules = ruleFactory(
+        class_name,
+        duration,
+        size,
+        color,
+        animation_name,
+        x,
+        y
       );
-      document.styleSheets[0].insertRule(
-        keyframeFactory(animation_name, x, y, width, height),
-        0
-      );
+      var keyframeRules = keyframeFactory(animation_name, x, y, width, height);
+      console.log(document.head)
+      document.getElementById('fireflies').appendChild(document.createTextNode(cssRules))
+      document.getElementById("fireflies").appendChild(document.createTextNode(keyframeRules));
     }
 
     var position = "relative";
