@@ -22,10 +22,6 @@ export const toc = [
 
 <TOC toc={toc} />
 
-import {fireFlies} from "../../lib/fireflies"
-
-{fireFlies({"number_flies": 300,})}
-
 Sadly these dazzling beetles and their famous lights are vanishing all around our planet.
 This is due to loss of their natural habitat, pesticides and light pollution. I am quite saddened by this thought, as they and especially their ability to glow was always something that kept me amazed and bewildered when I was small.
 Even though there is less magic involved than the little me thought, the actual chemical process is still a very magical one:
@@ -197,6 +193,7 @@ import LayoutPostWrapper from "../../components/layoutPostWrapper"
 
 export default ({ children }) => (
   <LayoutPostWrapper pageIdx={1} title="How do Fireflies glow?" date="2022-08-13">
+    <style global jsx>{`body {background: black;}`}</style>
     {children}
   </LayoutPostWrapper>
 )
