@@ -28,11 +28,8 @@ export default function LanguageSwitch({ containerID, label }) {
   };
 
   const handleGerButton = () => {
-    console.log("hmmmmmmm")
-    console.log(language)
     if (language !== "ger") {
       const gerContainers = document.getElementsByClassName("gerContainer");
-      console.log(gerContainers)
       const engContainers = document.getElementsByClassName("engContainer");
       Array.from(engContainers as HTMLCollectionOf<HTMLElement>).forEach(
         (container) => {
