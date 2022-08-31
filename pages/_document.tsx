@@ -3,6 +3,13 @@
 /* eslint-disable @next/next/no-sync-scripts */
 import { Html, Head, Main, NextScript } from "next/document";
 
+declare global {
+  interface Window {
+    // TODO: replace this with a more specific type based on usage
+    dataLayer: any[];
+  }
+}
+
 export default function Document() {
   return (
     <Html>
@@ -11,7 +18,9 @@ export default function Document() {
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-83EMYWNDG1"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
-          function gtag(){(dataLayer).push(arguments)}
+          function gtag(){
+            (window.dataLayer).push(arguments)
+          }
           gtag("js", new Date());
           gtag('config', 'G-83EMYWNDG1');
         </script>
