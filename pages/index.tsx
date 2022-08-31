@@ -4,7 +4,7 @@ import ConstructionIcon from '@mui/icons-material/Construction';
 import Container from "@mui/material/Container";
 import { Paper } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import setStylesheet from "../lib/style"
+import {setBackgroundColor} from "../lib/style"
 
 import Constants from "../lib/constants";
 
@@ -12,7 +12,7 @@ import layoutStyles from "../styles/layout.module.css";
 import styles from "../styles/utils.module.css";
 
 export default function Home() {
-  setStylesheet('body{background-color:white;}')
+  setBackgroundColor("white")
   return (
     <Layout pageIdx={0}>
       <Stack spacing={1}>

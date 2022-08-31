@@ -4,11 +4,11 @@ import PostListV2 from "../components/postListv2";
 import posts from "../posts/posts"
 import { useRouter } from "next/router";
 import LayoutPostWrapper from "../components/layoutPostWrapper";
-import setStylesheet from "../lib/style"
+import {setBackgroundColor} from "../lib/style"
 
 
 export default function Programming() {
-  setStylesheet('body{background-color:white;}')
+  setBackgroundColor("white")
   const router = useRouter()
   const data = router.query
 
