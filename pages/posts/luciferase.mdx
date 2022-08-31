@@ -1,8 +1,19 @@
 import {setBackgroundColor} from "../../lib/style"
 import {fireFlies} from "../../lib/fireflies"
+import LanguageSwitch from "../../components/languageSwitch"
 
-{setBackgroundColor('black')}
-{fireFlies({number_flies: 300})}
+{setBackgroundColor('white')}
+
+<LanguageSwitch />
+
+:::div{class="gerContainer" style="display: none"}
+Test Deutsch
+:::
+
+:::div{class="engContainer"}
+Test English
+:::
+
 
 <img src="/firefly3.jpg" style={{height: "400px", width: "100%", marginLeft: "auto", marginRight: "auto"}}/>
 
@@ -195,7 +206,6 @@ import LayoutPostWrapper from "../../components/layoutPostWrapper"
 
 export default ({ children }) => (
   <LayoutPostWrapper pageIdx={1} title="How do Fireflies glow?" date="2022-08-13">
-    <style global jsx>{`body {background: black;}`}</style>
     {children}
   </LayoutPostWrapper>
 )

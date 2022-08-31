@@ -100,7 +100,6 @@ export const fireFlies = (function () {
         y
       );
       var keyframeRules = keyframeFactory(animation_name, x, y, width, height);
-      console.log(document.head)
       document.getElementById('fireflies').appendChild(document.createTextNode(cssRules))
       document.getElementById("fireflies").appendChild(document.createTextNode(keyframeRules));
     }
