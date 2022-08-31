@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <Layout pageIdx={0}>
       <Stack spacing={1}>
-        <Paper elevation={3} style={{ opacity: "90%" }}>
+        <Paper elevation={0} style={{ opacity: "90%" }}>
           <Container maxWidth="xl" className={styles.padded}>
             <div style={{marginLeft: "auto", marginRight: "auto", width: "min-content"}}>
               <ConstructionIcon sx={{ fontSize: 100 }}/>
