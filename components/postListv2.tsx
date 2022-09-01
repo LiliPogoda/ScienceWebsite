@@ -14,6 +14,7 @@ import layoutStyles from "../styles/layout.module.css";
 export default function PostListV2({
   allPostsData,
   pageIdx,
+  unWrapped
 }: {
   allPostsData: {
     date: string;
@@ -25,8 +26,35 @@ export default function PostListV2({
     abstract: string;
   }[];
   pageIdx: number;
+  unWrapped?: boolean;
 }) {
-  return (
+  return unWrapped ? (
+    <Grid container spacing={3}>
+            {allPostsData.map(post => (
+            <Grid item key={post.id}>
+                <Card elevation={3} sx={{ maxWidth: 315, height: 400 }}>
+                    <CardMedia
+                        component="img"
+                        width="313"
+                        height="200"
+                        image={post.thumbnail}
+                        alt="thumbnail"
+                    />
+                    <CardContent>
+                        <a href={`/posts/${post.id}`} style={{color: "black"}}>
+                        <Typography gutterBottom variant="h5" component="div">
+                        {post.title}
+                        </Typography>
+                        </a>
+                        <Typography variant="body2" color="text.secondary">
+                        {post.abstract}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            </Grid>
+            ))}
+        </Grid>
+  ) :(
     <Layout pageIdx={pageIdx}>
       <Box sx={{ width: "100%" }}>
         <Grid container spacing={3}>
