@@ -90,6 +90,15 @@ const posts: Array<Post> = [
         thumbnail: "TODO",
         categories: ["WIP"],
         abstract: "TODO"
+    },
+    {
+        id: "cella_classic",
+        title: "Cellular Automata: Chaos from Simplicity",
+        author: "Jan Schering",
+        date: "2022-09-02",
+        thumbnail: "TODO",
+        categories: ["Programming", "Math"],
+        abstract: "Intro to the beauty of Cellular Automata"
     }
 ]
 
