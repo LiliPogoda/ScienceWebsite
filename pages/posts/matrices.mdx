@@ -1,0 +1,13 @@
+<canvas id="c"></canvas>
+
+import {test} from "../../public/scripts/matrices/matrix"
+
+{test()}
+
+import LayoutPostWrapper from "../../components/layoutPostWrapper"
+
+export default ({ children }) => (
+  <LayoutPostWrapper pageIdx={2} title="Neural Cellular Automata" date="2022-08-13">
+    {children}
+  </LayoutPostWrapper>
+)
