@@ -41,7 +41,7 @@ figcaption {
 
 .animated {
   -webkit-animation-duration: 10s;
-  animation-duration: 2s;
+  animation-duration: 1s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }

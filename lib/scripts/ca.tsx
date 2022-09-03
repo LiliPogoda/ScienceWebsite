@@ -7,13 +7,13 @@ import {
   } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-const numRows = 21
-const numCols = 21
+const numRows = 20
+const numCols = 20
 
 // Possible combinations of a cell neighborhood
 const numPerturbs = 8
 
-const ruleDim = "50px";
+const ruleDim = "30px";
 const cellDim = "20px";
 
 const CA = ()  => {
@@ -136,7 +136,7 @@ const CA = ()  => {
      * Visualize the given rule through HTML
      */
     const RuleCard = (rule: {code:string, fill:boolean, id: number}) => (
-        <Paper elevation={3}  style={{width: 150, height: 149}}>
+        <Paper elevation={3}  style={{width: 90, height: 100}}>
             <Stack spacing={0}>
                 <Grid container spacing={0}>
                     {rule.code.split("").map((val, idx) => (
@@ -146,7 +146,7 @@ const CA = ()  => {
                     ))}
                 </Grid>
                 <div style={{marginLeft: "auto", marginRight: "auto"}}>
-                    <ArrowDownwardIcon sx={{ fontSize: 40}} />
+                    <ArrowDownwardIcon sx={{ fontSize: 30}} />
                 </div>
                 <div style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => handleRuleChange(rule.id)}>
                     <Cell filled={rule.fill}/>
@@ -184,17 +184,29 @@ const CA = ()  => {
           </Paper>
     );
 
-    return (<>
-        <Grid container spacing={1}>
-            {ruleSet.map((rule, idx) => (
-                <Grid item  key={`${rule.code}`}>
-                    <RuleCard code={rule.code} fill={rule.fill} id={idx}/>
+    return (
+      <>
+        <Paper>
+          <Grid container spacing={1}>
+            <Grid item sx={{ marginLeft: "auto" }}>
+              <Automaton />
+            </Grid>
+            <Grid item xs={5} sx={{ marginRight: "auto" }}>
+              <Stack spacing={1}>
+                <Grid container spacing={1}>
+                  {ruleSet.map((rule, idx) => (
+                    <Grid item key={`${rule.code}`}>
+                      <RuleCard code={rule.code} fill={rule.fill} id={idx} />
+                    </Grid>
+                  ))}
                 </Grid>
-            ))}
-        </Grid>
-        <Automaton />
-        <Button onClick={handleEvolve}>Run</Button>
-    </>)
+                <Button sx={{width: "max-content"}} onClick={handleEvolve}>Run</Button>
+              </Stack>
+            </Grid>
+          </Grid>
+        </Paper>
+      </>
+    );
 }
 
 /**
