@@ -10,6 +10,7 @@ import {
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 const CA = (props:any)  => {
+    const [step, setStep] = React.useState(0)
     const [ruleSet, setRuleset] = React.useState(() => {
         // There are 8 possible combinations in a CA
         return Array.from({length: 8}, (x, i) => i).map(decimal => {
@@ -19,25 +20,84 @@ const CA = (props:any)  => {
             }
         })
     })
-    const [grid, setGrid] = React.useState(() => {
-        const numRows = 50;
-        const numCols = 50;
-        const rows = []
-        for (let i = 0; i<numRows; i++) {
-            const row = []
-            for (let j = 0; j<numCols; j++) {
-                row.push(false)
-            }
-            rows.push(row)
-        }
-        return rows
-    })
 
     const handleClick = (id) => {
         const newRuleSet = produceRuleSet(ruleSet, (newRuleSet) => {
             newRuleSet[id].fill = !newRuleSet[id].fill
         });
         setRuleset(newRuleSet);
+    }
+
+    const handleEvolve = () => {
+        let step = 0
+        while (step <= 9) {
+            const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
+            const rowPrev = Array.from(document.querySelectorAll(`div[id^="r${step}-"]`))  as any as Array<HTMLDivElement>;
+            rowCurrent.forEach((cell, idx) => {
+                const leftNeighbor = idx === 0 ? rowPrev.slice(-1)[0] : rowPrev[idx-1];
+                const rightNeighbor = idx === 9 ? rowPrev[0] : rowPrev[idx+1];
+                const lFill = leftNeighbor.style.backgroundColor === 'black';
+                const rFill = rightNeighbor.style.backgroundColor === 'black';
+                const cFill = rowPrev[idx].style.backgroundColor === 'black';
+                if (!lFill && !cFill && !rFill) {
+                    // 000
+                    if (ruleSet[0].fill) {
+                      (
+                        rowCurrent[idx] as HTMLDivElement
+                      ).style.backgroundColor = "black";
+                    }
+                } else if (!lFill && !cFill && rFill) {
+                    // 001
+                    if (ruleSet[1].fill) {
+                      (
+                        rowCurrent[idx] as HTMLDivElement
+                      ).style.backgroundColor = "black";
+                    }
+                } else if (!lFill && cFill && !rFill) {
+                    // 010
+                    if (ruleSet[2].fill) {
+                      (
+                        rowCurrent[idx] as HTMLDivElement
+                      ).style.backgroundColor = "black";
+                    }
+                } else if (!lFill && cFill && rFill) {
+                    // 011
+                    if (ruleSet[3].fill) {
+                      (
+                        rowCurrent[idx] as HTMLDivElement
+                      ).style.backgroundColor = "black";
+                    }
+                } else if (lFill && !cFill && !rFill) {
+                    // 100
+                    if (ruleSet[4].fill) {
+                    (rowCurrent[idx] as HTMLDivElement).style.backgroundColor =
+                        "black";
+                    }
+                } else if (lFill && !cFill && rFill) {
+                    // 101
+                    if (ruleSet[5].fill) {
+                      (
+                        rowCurrent[idx] as HTMLDivElement
+                      ).style.backgroundColor = "black";
+                    }
+                } else if (lFill && cFill && !rFill) {
+                    // 110
+                    if (ruleSet[6].fill) {
+                      (
+                        rowCurrent[idx] as HTMLDivElement
+                      ).style.backgroundColor = "black";
+                    }
+                } else if (lFill && cFill && rFill) {
+                    // 111
+                    if (ruleSet[7].fill) {
+                      (
+                        rowCurrent[idx] as HTMLDivElement
+                      ).style.backgroundColor = "black";
+                    }
+                }
+            })
+            step++;
+        }
     }
 
     const RuleCard = (rule: {code:string, fill:boolean, id: number}) => {
@@ -62,20 +122,20 @@ const CA = (props:any)  => {
 
     const Automaton = () => {
         return (
-            <Paper elevation={3} sx={{width: "max-content"}}>
-                <Stack spacing={0}>
-                    {grid.map((row, rIdx) => (
-                        <Grid key={`r${rIdx}`} container spacing={0}>
-                            {row.map((cellFilled, cIdx) => (
-                                <Grid item key={`r${rIdx}-c${cIdx}`}>
-                                    {cellFilled ? <BlackBox  small={true}/> : <WhiteBox small={true} />}
-                                </Grid>
-                            ))}
+          <Paper elevation={3} sx={{ width: "max-content" }}>
+            <Stack spacing={0}>
+              {Array.from({length: 10}, (x, i) => i).map(row => (
+                <Grid key={`r${row}`} container spacing={0}>
+                    {Array.from({length: 10}, (x, i) => i).map(col => (
+                        <Grid item key={`r${row}-c${col}`}>
+                            <WhiteBox small props={{id: `r${row}-c${col}`}} />
                         </Grid>
                     ))}
-                </Stack>
-            </Paper>
-        )
+                </Grid>
+              ))}
+            </Stack>
+          </Paper>
+        );
     }
 
     return (<>
@@ -85,6 +145,7 @@ const CA = (props:any)  => {
             ))}
         </Grid>
         <Automaton />
+        <Button onClick={handleEvolve}>Run</Button>
     </>)
 }
 
@@ -138,10 +199,6 @@ const produceRuleSet = (ruleSet, callback) => {
     return newRuleSet;
 };
 
-const produceGrid = (grid, callback) => {
-    const newGrid = JSON.parse(JSON.stringify(grid));
-    callback(newGrid);
-    return newGrid;
-};
+
 
 export default CA
