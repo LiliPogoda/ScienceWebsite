@@ -129,7 +129,7 @@ const CA = (props:any)  => {
                 <Grid container spacing={0}>
                     {rule.code.split("").map((val, idx) => (
                         <Grid item key={`${rule}-${idx}`}>
-                            {val === "1" ? <BlackBox /> : <WhiteBox />}
+                            <Cell filled={val === "1"}/>
                         </Grid>
                     ))}
                 </Grid>
@@ -137,7 +137,7 @@ const CA = (props:any)  => {
                     <ArrowDownwardIcon sx={{ fontSize: 40}} />
                 </div>
                 <div style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => handleRuleChange(rule.id)}>
-                    {rule.fill ? <BlackBox /> : <WhiteBox/>}
+                    <Cell filled={rule.fill}/>
                 </div>
             </Stack>
         </Paper>)
@@ -157,7 +157,7 @@ const CA = (props:any)  => {
                 >
                   {Array.from({ length: numCols }, (x, i) => i).map((col) => (
                     <Grid item key={`r${row}-c${col}`}>
-                      <WhiteBox small props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} />
+                      <Cell small props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} />
                     </Grid>
                   ))}
                 </Grid>
@@ -194,30 +194,18 @@ function convertToBinary(x:number) {
     return result
 }
 
-const BlackBox = ({props={}, small=false}) => {
-    return <Paper 
-    variant="outlined" 
-    square 
+const Cell = ({ props = {}, small = false, filled = false }) => (
+  <Paper
+    variant="outlined"
+    square
     style={{
-        backgroundColor: "black",
-        width: small ? cellDim : ruleDim,
-        height: small ? cellDim : ruleDim
-    }} 
-    {...props}
-    />
-}
-
-const WhiteBox = ({props={}, small=false}) => {
-    return <Paper 
-    variant="outlined" 
-    square 
-    style={{
-        width: small ? cellDim : ruleDim,
-        height: small ? cellDim : ruleDim
+      backgroundColor: filled ? "black" : "white",
+      width: small ? cellDim : ruleDim,
+      height: small ? cellDim : ruleDim,
     }}
-    {...props} 
-    />
-}
+    {...props}
+  />
+);
 
 const produceRuleSet = (ruleSet, callback) => {
     const newRuleSet = JSON.parse(JSON.stringify(ruleSet));
