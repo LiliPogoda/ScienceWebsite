@@ -9,11 +9,19 @@ import {
   } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
+const numRows = 20
+const numCols = 20
+
+// Possible combinations of a cell neighborhood
+const numPerturbs = 8
+
+const ruleDim = "50px";
+const cellDim = "20px";
+
 const CA = (props:any)  => {
-    const [step, setStep] = React.useState(0)
     const [ruleSet, setRuleset] = React.useState(() => {
         // There are 8 possible combinations in a CA
-        return Array.from({length: 8}, (x, i) => i).map(decimal => {
+        return Array.from({length: numPerturbs}, (x, i) => i).map(decimal => {
             return {
                 code: convertToBinary(decimal),
                 fill: false
@@ -30,12 +38,12 @@ const CA = (props:any)  => {
 
     const handleEvolve = () => {
         let step = 0
-        while (step <= 9) {
+        while (step < numRows) {
             const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
             const rowPrev = Array.from(document.querySelectorAll(`div[id^="r${step}-"]`))  as any as Array<HTMLDivElement>;
             rowCurrent.forEach((cell, idx) => {
                 const leftNeighbor = idx === 0 ? rowPrev.slice(-1)[0] : rowPrev[idx-1];
-                const rightNeighbor = idx === 9 ? rowPrev[0] : rowPrev[idx+1];
+                const rightNeighbor = idx === numCols-1 ? rowPrev[0] : rowPrev[idx+1];
                 const lFill = leftNeighbor.style.backgroundColor === 'black';
                 const rFill = rightNeighbor.style.backgroundColor === 'black';
                 const cFill = rowPrev[idx].style.backgroundColor === 'black';
@@ -97,11 +105,17 @@ const CA = (props:any)  => {
                 }
             })
             step++;
+            if (step < numRows) {
+                const row = document
+                  .querySelector(`div[id=r${step}]`)
+                row.classList.remove("hidden")
+                row.classList.add("animated", "fadeInDown");
+            }            
         }
     }
 
     const RuleCard = (rule: {code:string, fill:boolean, id: number}) => {
-        return (<Paper elevation={3}  style={{width: 150, height: 147}}>
+        return (<Paper elevation={3}  style={{width: 150, height: 149}}>
             <Stack spacing={0}>
                 <Grid container spacing={0}>
                     {rule.code.split("").map((val, idx) => (
@@ -124,13 +138,19 @@ const CA = (props:any)  => {
         return (
           <Paper elevation={3} sx={{ width: "max-content" }}>
             <Stack spacing={0}>
-              {Array.from({length: 10}, (x, i) => i).map(row => (
-                <Grid key={`r${row}`} container spacing={0}>
-                    {Array.from({length: 10}, (x, i) => i).map(col => (
-                        <Grid item key={`r${row}-c${col}`}>
-                            <WhiteBox small props={{id: `r${row}-c${col}`}} />
-                        </Grid>
-                    ))}
+              {Array.from({ length: numRows }, (x, i) => i).map((row) => (
+                <Grid
+                  key={`r${row}`}
+                  id={`r${row}`}
+                  className={row === 0 ? "" : "hidden"}
+                  container
+                  spacing={0}
+                >
+                  {Array.from({ length: numCols }, (x, i) => i).map((col) => (
+                    <Grid item key={`r${row}-c${col}`}>
+                      <WhiteBox small props={{ id: `r${row}-c${col}` }} />
+                    </Grid>
+                  ))}
                 </Grid>
               ))}
             </Stack>
@@ -165,17 +185,14 @@ function convertToBinary(x:number) {
     return result
 }
 
-const smallDim = "10px"
-const largeDim = "50px"
-
 const BlackBox = ({props={}, small=false}) => {
     return <Paper 
     variant="outlined" 
     square 
     style={{
         backgroundColor: "black",
-        width: small ? smallDim : largeDim,
-        height: small ? smallDim : largeDim
+        width: small ? cellDim : ruleDim,
+        height: small ? cellDim : ruleDim
     }} 
     {...props}
     />
@@ -186,8 +203,8 @@ const WhiteBox = ({props={}, small=false}) => {
     variant="outlined" 
     square 
     style={{
-        width: small ? smallDim : largeDim,
-        height: small ? smallDim : largeDim
+        width: small ? cellDim : ruleDim,
+        height: small ? cellDim : ruleDim
     }}
     {...props} 
     />
