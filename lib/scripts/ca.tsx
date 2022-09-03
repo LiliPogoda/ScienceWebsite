@@ -1,7 +1,5 @@
 import * as React from "react"
 import {
-    CardMedia,
-    Typography,
     Grid,
     Paper,
     Stack,
@@ -9,8 +7,8 @@ import {
   } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-const numRows = 20
-const numCols = 20
+const numRows = 21
+const numCols = 21
 
 // Possible combinations of a cell neighborhood
 const numPerturbs = 8
@@ -18,7 +16,8 @@ const numPerturbs = 8
 const ruleDim = "50px";
 const cellDim = "20px";
 
-const CA = (props:any)  => {
+const CA = ()  => {
+    // Represents how the CA should be updated at each step
     const [ruleSet, setRuleset] = React.useState(() => {
         // There are 8 possible combinations in a CA
         return Array.from({length: numPerturbs}, (x, i) => i).map(decimal => {
@@ -29,7 +28,10 @@ const CA = (props:any)  => {
         })
     })
 
-    const handleInitClick = (event) => {
+    /**
+     * Handle the setup of the initial CA state by changing the clicked cell color
+     */
+    const handleInitClick = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.currentTarget.style.backgroundColor === "black") {
             event.currentTarget.style.backgroundColor = "white";
         } else {
@@ -37,13 +39,20 @@ const CA = (props:any)  => {
         }
     }
 
-    const handleRuleChange = (id) => {
+    /**
+     * Changes the rule of the given ID to the opposite outcome
+     * @param id The ID of the rule that should be adjusted
+     */
+    const handleRuleChange = (id:number) => {
         const newRuleSet = produceRuleSet(ruleSet, (newRuleSet) => {
             newRuleSet[id].fill = !newRuleSet[id].fill
         });
         setRuleset(newRuleSet);
     }
 
+    /**
+     * Evolve the CA over time.
+     */
     const handleEvolve = async () => {
         let step = 0
         while (step < numRows) {
@@ -123,8 +132,11 @@ const CA = (props:any)  => {
         }
     }
 
-    const RuleCard = (rule: {code:string, fill:boolean, id: number}) => {
-        return (<Paper elevation={3}  style={{width: 150, height: 149}}>
+    /**
+     * Visualize the given rule through HTML
+     */
+    const RuleCard = (rule: {code:string, fill:boolean, id: number}) => (
+        <Paper elevation={3}  style={{width: 150, height: 149}}>
             <Stack spacing={0}>
                 <Grid container spacing={0}>
                     {rule.code.split("").map((val, idx) => (
@@ -140,11 +152,13 @@ const CA = (props:any)  => {
                     <Cell filled={rule.fill}/>
                 </div>
             </Stack>
-        </Paper>)
-    }
+        </Paper>
+    )
 
-    const Automaton = () => {
-        return (
+    /**
+     * Generates the CA as JSX.
+     */
+    const Automaton = () => (
           <Paper elevation={3} sx={{ width: "max-content" }}>
             <Stack spacing={0}>
               {Array.from({ length: numRows }, (x, i) => i).map((row) => (
@@ -157,20 +171,25 @@ const CA = (props:any)  => {
                 >
                   {Array.from({ length: numCols }, (x, i) => i).map((col) => (
                     <Grid item key={`r${row}-c${col}`}>
-                      <Cell small props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} />
+                        <Cell 
+                            filled={row===0 && col===Math.floor(numCols/2)} 
+                            small 
+                            props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} 
+                        />
                     </Grid>
                   ))}
                 </Grid>
               ))}
             </Stack>
           </Paper>
-        );
-    }
+    );
 
     return (<>
         <Grid container spacing={1}>
             {ruleSet.map((rule, idx) => (
-                <Grid item  key={`${rule.code}`}><RuleCard code={rule.code} fill={rule.fill} id={idx}/></Grid>
+                <Grid item  key={`${rule.code}`}>
+                    <RuleCard code={rule.code} fill={rule.fill} id={idx}/>
+                </Grid>
             ))}
         </Grid>
         <Automaton />
@@ -178,9 +197,14 @@ const CA = (props:any)  => {
     </>)
 }
 
-function convertToBinary(x:number) {
+/**
+ * generate a binary string from a given number. If the binary string
+ * is shorter than three digits, fills up with leading zeros
+ * @param x The decimal number to convert
+ */
+const convertToBinary = (x:number): string => {
     let bin = 0;
-    let rem, i = 1, step = 1;
+    let rem, i = 1
     while (x != 0) {
         rem = x % 2;
         x = parseInt((x / 2).toString());
@@ -194,6 +218,9 @@ function convertToBinary(x:number) {
     return result
 }
 
+/**
+ * Generates a CA cell JSX Element
+ */
 const Cell = ({ props = {}, small = false, filled = false }) => (
   <Paper
     variant="outlined"
@@ -207,13 +234,23 @@ const Cell = ({ props = {}, small = false, filled = false }) => (
   />
 );
 
+/**
+ * Helper function to update the ruleset. Avoids mutating the state variable directly by making
+ * a copy of the ruleset, mutating the copy and then setting the copy as the new ruleset
+ * @param ruleSet - The current ruleset
+ * @param callback - function that is supposed to mutate the ruleset
+ * @returns The mutated ruleset
+ */
 const produceRuleSet = (ruleSet, callback) => {
     const newRuleSet = JSON.parse(JSON.stringify(ruleSet));
     callback(newRuleSet);
     return newRuleSet;
 };
 
-const sleep = (ms) => {
+/**
+ * Creates an awaitable promise that auto resolves after the given <ms> time.
+ */
+const sleep = (ms:number)=> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
