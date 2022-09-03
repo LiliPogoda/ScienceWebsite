@@ -29,14 +29,22 @@ const CA = (props:any)  => {
         })
     })
 
-    const handleClick = (id) => {
+    const handleInitClick = (event) => {
+        if (event.currentTarget.style.backgroundColor === "black") {
+            event.currentTarget.style.backgroundColor = "white";
+        } else {
+            event.currentTarget.style.backgroundColor = "black";
+        }
+    }
+
+    const handleRuleChange = (id) => {
         const newRuleSet = produceRuleSet(ruleSet, (newRuleSet) => {
             newRuleSet[id].fill = !newRuleSet[id].fill
         });
         setRuleset(newRuleSet);
     }
 
-    const handleEvolve = () => {
+    const handleEvolve = async () => {
         let step = 0
         while (step < numRows) {
             const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
@@ -110,7 +118,8 @@ const CA = (props:any)  => {
                   .querySelector(`div[id=r${step}]`)
                 row.classList.remove("hidden")
                 row.classList.add("animated", "fadeInDown");
-            }            
+            }  
+            await sleep(500)          
         }
     }
 
@@ -127,7 +136,7 @@ const CA = (props:any)  => {
                 <div style={{marginLeft: "auto", marginRight: "auto"}}>
                     <ArrowDownwardIcon sx={{ fontSize: 40}} />
                 </div>
-                <div style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => handleClick(rule.id)}>
+                <div style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => handleRuleChange(rule.id)}>
                     {rule.fill ? <BlackBox /> : <WhiteBox/>}
                 </div>
             </Stack>
@@ -148,7 +157,7 @@ const CA = (props:any)  => {
                 >
                   {Array.from({ length: numCols }, (x, i) => i).map((col) => (
                     <Grid item key={`r${row}-c${col}`}>
-                      <WhiteBox small props={{ id: `r${row}-c${col}` }} />
+                      <WhiteBox small props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} />
                     </Grid>
                   ))}
                 </Grid>
@@ -215,6 +224,10 @@ const produceRuleSet = (ruleSet, callback) => {
     callback(newRuleSet);
     return newRuleSet;
 };
+
+const sleep = (ms) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 
 
