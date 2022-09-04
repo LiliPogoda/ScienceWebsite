@@ -7,6 +7,8 @@ import {
     Container
   } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import IconButton from '@mui/material/IconButton';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
 const numRows = 40
 const numCols = 52
@@ -209,7 +211,14 @@ const CA = ()  => {
                     </Grid>
                   ))}
                 </Grid>
-                <Button sx={{width: "max-content"}} onClick={handleEvolve}>Run</Button>
+                <IconButton 
+                    color="primary" 
+                    aria-label="simulate CA" 
+                    onClick={handleEvolve} 
+                    sx={{width: "max-content"}}
+                >
+                    <PlayCircleIcon sx={{fontSize: 50}}/>
+                </IconButton>
               </Stack>
             </Grid>
           </Grid>
