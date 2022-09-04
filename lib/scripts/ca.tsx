@@ -3,18 +3,19 @@ import {
     Grid,
     Paper,
     Stack,
-    Button
+    Button,
+    Container
   } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
-const numRows = 20
-const numCols = 20
+const numRows = 40
+const numCols = 52
 
 // Possible combinations of a cell neighborhood
 const numPerturbs = 8
 
 const ruleDim = "30px";
-const cellDim = "20px";
+const cellDim = "10px";
 
 const CA = ()  => {
     // Represents how the CA should be updated at each step
@@ -159,34 +160,42 @@ const CA = ()  => {
      * Generates the CA as JSX.
      */
     const Automaton = () => (
-          <Paper elevation={3} sx={{ width: "max-content" }}>
+          <Paper elevation={3} sx={{ width: "550px" }}>
             <Stack spacing={0}>
               {Array.from({ length: numRows }, (x, i) => i).map((row) => (
-                <Grid
-                  key={`r${row}`}
-                  id={`r${row}`}
-                  className={row === 0 ? "" : "hidden"}
-                  container
-                  spacing={0}
+                <Grid 
+                    container key={`r${row}`} 
+                    id={`r${row}`}
+                    className={row === 0 ? "" : "hidden"}
                 >
-                  {Array.from({ length: numCols }, (x, i) => i).map((col) => (
-                    <Grid item key={`r${row}-c${col}`}>
-                        <Cell 
-                            filled={row===0 && col===Math.floor(numCols/2)} 
-                            small 
-                            props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} 
-                        />
+                    <Grid item sx={{fontSize: "6px", width: "30px"}}>
+                        Step {row+1}
                     </Grid>
-                  ))}
+                    <Grid item>
+                        <Grid
+                        container
+                        spacing={0}
+                        >
+                            {Array.from({ length: numCols }, (x, i) => i).map((col) => (
+                                <Grid item key={`r${row}-c${col}`}>
+                                    <Cell 
+                                        filled={row===0 && col===Math.floor(numCols/2)} 
+                                        small 
+                                        props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} 
+                                    />
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Grid>
                 </Grid>
-              ))}
+            ))}
             </Stack>
           </Paper>
     );
 
     return (
       <>
-        <Paper>
+        <Container style={{width: "100%", padding: 0, margin:0}}>
           <Grid container spacing={1}>
             <Grid item sx={{ marginLeft: "auto" }}>
               <Automaton />
@@ -204,7 +213,7 @@ const CA = ()  => {
               </Stack>
             </Grid>
           </Grid>
-        </Paper>
+        </Container>
       </>
     );
 }
