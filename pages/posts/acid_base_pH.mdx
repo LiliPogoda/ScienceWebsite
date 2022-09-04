@@ -1,0 +1,30 @@
+TODO:lab flasks with coloured liquids
+
+TODO: good intro
+In the last article I discussed the ionproduct of the water. Why again is that thing important again?
+To be able to measure how acid or basic our compound is we need a scale. And for that we have to take in consideration all chemical equilibria who are taking part when an acid or base reacts with water.
+So then in the last article we only took a look at water and determined the chemical equilibrium and its konstant: K$_w$ - The ionproduct of water. Now what do we do with this thing? How does it help us to measure anything?
+
+We determined that in a neutral solution the concentrations of H3O+ and OH- both are equals $1.0 * 10^-7$. And K$_w$ is equals $1.0 * 10^-14$ M$^2$. (TODO:equation)
+[H30+][OH-]= K$_w$
+$(1.0 * 10^-7M) * (1.0 * 10^-7M) = 1.0 * 10^-14 M^2$
+These numbers are quite complicated. So to get something that is easier to look on we take the negativ decadic logarithm. (Logarithm to the Base of 10)
+
+Remember:log(A*B)=log(A)+log(B)
+
+$ -log((1.0 * 10^-7M) * (1.0 * 10^-7M))=-log(1.0 * 10^-14 M^2)$
+
+$-log(1.0 * 10^-7M) + -log(1.0 * 10^-7M)=-log(1.0 * 10^-14 M^2)$
+
+$ 7 + 7 = 14 $ or just $ pH + pOH = pK_w $
+
+
+
+
+import LayoutPostWrapper from "../../components/layoutPostWrapper"
+
+export default ({ children }) => (
+  <LayoutPostWrapper pageIdx={1} title="Acid & Base chemistry: The pH-scale" date="2022-09-01">
+    {children}
+  </LayoutPostWrapper>
+)

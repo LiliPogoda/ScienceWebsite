@@ -90,6 +90,15 @@ const posts: Array<Post> = [
         thumbnail: "TODO",
         categories: ["WIP"],
         abstract: "TODO"
+    },
+    {
+        id: "acid_base_pH",
+        title: "Acid & Base chemistry: The pH-scale",
+        author: "Esther-Philine Pogoda",
+        date: "2022-09-01",
+        thumbnail: "TODO",
+        categories: ["Chemistry"],
+        abstract: "TODO"
     }
 ]
 
