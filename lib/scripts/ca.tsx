@@ -8,6 +8,7 @@ import {
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import IconButton from '@mui/material/IconButton';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
 
 const numRows = 40
 const numCols = 52
@@ -18,99 +19,34 @@ const numPerturbs = 8
 const ruleDim = "30px";
 const cellDim = "10px";
 
+/**
+ * Cellular Automata JSX
+ */
 const CA = ()  => {
+    const [renderKey, setRenderKey] = React.useState(0)
 
     const codes = Array.from({length: numPerturbs}, (x, i) => i).map(decimal => convertToBinary(decimal))
+    let runner;
 
-    /**
-     * Evolve the CA over time.
-     */
-    const handleEvolve = async (step, rules) => {
-        const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
-        const rowPrev = Array.from(document.querySelectorAll(`div[id^="r${step}-"]`))  as any as Array<HTMLDivElement>;
-        rowCurrent.forEach((cell, idx) => {
-            const leftNeighbor = idx === 0 ? rowPrev.slice(-1)[0] : rowPrev[idx-1];
-            const rightNeighbor = idx === numCols-1 ? rowPrev[0] : rowPrev[idx+1];
-            const lFill = leftNeighbor.style.backgroundColor === 'black';
-            const rFill = rightNeighbor.style.backgroundColor === 'black';
-            const cFill = rowPrev[idx].style.backgroundColor === 'black';
-            if (!lFill && !cFill && !rFill) {
-                // 000
-                if (rules[0] === "black") {
-                    (
-                    rowCurrent[idx] as HTMLDivElement
-                    ).style.backgroundColor = "black";
-                }
-            } else if (!lFill && !cFill && rFill) {
-                // 001
-                if (rules[1] === "black") {
-                    (
-                    rowCurrent[idx] as HTMLDivElement
-                    ).style.backgroundColor = "black";
-                }
-            } else if (!lFill && cFill && !rFill) {
-                // 010
-                if (rules[2] === "black") {
-                    (
-                    rowCurrent[idx] as HTMLDivElement
-                    ).style.backgroundColor = "black";
-                }
-            } else if (!lFill && cFill && rFill) {
-                // 011
-                if (rules[3] === "black") {
-                    (
-                    rowCurrent[idx] as HTMLDivElement
-                    ).style.backgroundColor = "black";
-                }
-            } else if (lFill && !cFill && !rFill) {
-                // 100
-                if (rules[4] === "black") {
-                (rowCurrent[idx] as HTMLDivElement).style.backgroundColor =
-                    "black";
-                }
-            } else if (lFill && !cFill && rFill) {
-                // 101
-                if (rules[5] === "black") {
-                    (
-                    rowCurrent[idx] as HTMLDivElement
-                    ).style.backgroundColor = "black";
-                }
-            } else if (lFill && cFill && !rFill) {
-                // 110
-                if (rules[6] === "black") {
-                    (
-                    rowCurrent[idx] as HTMLDivElement
-                    ).style.backgroundColor = "black";
-                }
-            } else if (lFill && cFill && rFill) {
-                // 111
-                if (rules[7] === "black") {
-                    (
-                    rowCurrent[idx] as HTMLDivElement
-                    ).style.backgroundColor = "black";
-                }
-            }
-        })
-        if (step+1 < numRows) {
-            const row = document
-                .querySelector(`div[id=r${step+1}]`)
-            row.classList.remove("hidden")
-            row.classList.add("animated", "fadeInDown");
-        }   
+    const useStopCA = () => {
+        try {
+            clearInterval(runner)
+        } catch (e) {}
+        setRenderKey(renderKey+1)
     }
 
     const runCA = () => {
-        console.log(PlayCircleIcon.toString())
         const rules = codes.map(code => 
             (document.querySelector(`div[id="${code}-rule"]`) as HTMLDivElement)
             .style.backgroundColor
             )
-        console.log(rules)
         let step = 0
-        let runner = setInterval(function() {
-            console.log(step)
+        runner = setInterval(function() {
             handleEvolve(step, rules)
             step++
+            if (step >= numRows) {
+                clearInterval(runner)
+            }
          }, 500);
          
     }
@@ -120,7 +56,7 @@ const CA = ()  => {
         <Container style={{width: "100%", padding: 0, margin:0}}>
           <Grid container spacing={1}>
             <Grid item sx={{ marginLeft: "auto" }}>
-              <Automaton />
+              <Automaton key={renderKey}/>
             </Grid>
             <Grid item xs={5} sx={{ marginRight: "auto" }}>
               <Stack spacing={1}>
@@ -139,12 +75,97 @@ const CA = ()  => {
                 >
                     <PlayCircleIcon sx={{fontSize: 50}}/>
                 </IconButton>
+                <IconButton 
+                    color="primary" 
+                    aria-label="simulate CA" 
+                    onClick={useStopCA} 
+                    sx={{width: "max-content"}}
+                >
+                    <ReplayCircleFilledIcon sx={{fontSize: 50}}/>
+                </IconButton>
               </Stack>
             </Grid>
           </Grid>
         </Container>
       </>
     );
+}
+
+/**
+ * Evolve the CA over time.
+ */
+const handleEvolve = async (step:number, rules:Array<string>) => {
+    const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
+    const rowPrev = Array.from(document.querySelectorAll(`div[id^="r${step}-"]`))  as any as Array<HTMLDivElement>;
+    rowCurrent.forEach((cell, idx) => {
+        const leftNeighbor = idx === 0 ? rowPrev.slice(-1)[0] : rowPrev[idx-1];
+        const rightNeighbor = idx === numCols-1 ? rowPrev[0] : rowPrev[idx+1];
+        const lFill = leftNeighbor.style.backgroundColor === 'black';
+        const rFill = rightNeighbor.style.backgroundColor === 'black';
+        const cFill = rowPrev[idx].style.backgroundColor === 'black';
+        if (!lFill && !cFill && !rFill) {
+            // 000
+            if (rules[0] === "black") {
+                (
+                rowCurrent[idx] as HTMLDivElement
+                ).style.backgroundColor = "black";
+            }
+        } else if (!lFill && !cFill && rFill) {
+            // 001
+            if (rules[1] === "black") {
+                (
+                rowCurrent[idx] as HTMLDivElement
+                ).style.backgroundColor = "black";
+            }
+        } else if (!lFill && cFill && !rFill) {
+            // 010
+            if (rules[2] === "black") {
+                (
+                rowCurrent[idx] as HTMLDivElement
+                ).style.backgroundColor = "black";
+            }
+        } else if (!lFill && cFill && rFill) {
+            // 011
+            if (rules[3] === "black") {
+                (
+                rowCurrent[idx] as HTMLDivElement
+                ).style.backgroundColor = "black";
+            }
+        } else if (lFill && !cFill && !rFill) {
+            // 100
+            if (rules[4] === "black") {
+            (rowCurrent[idx] as HTMLDivElement).style.backgroundColor =
+                "black";
+            }
+        } else if (lFill && !cFill && rFill) {
+            // 101
+            if (rules[5] === "black") {
+                (
+                rowCurrent[idx] as HTMLDivElement
+                ).style.backgroundColor = "black";
+            }
+        } else if (lFill && cFill && !rFill) {
+            // 110
+            if (rules[6] === "black") {
+                (
+                rowCurrent[idx] as HTMLDivElement
+                ).style.backgroundColor = "black";
+            }
+        } else if (lFill && cFill && rFill) {
+            // 111
+            if (rules[7] === "black") {
+                (
+                rowCurrent[idx] as HTMLDivElement
+                ).style.backgroundColor = "black";
+            }
+        }
+    })
+    if (step+1 < numRows) {
+        const row = document
+            .querySelector(`div[id=r${step+1}]`)
+        row.classList.remove("hidden")
+        row.classList.add("animated", "fadeInDown");
+    }   
 }
 
 /**
