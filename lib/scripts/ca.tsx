@@ -3,7 +3,6 @@ import {
     Grid,
     Paper,
     Stack,
-    Button,
     Container
   } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
@@ -20,180 +19,101 @@ const ruleDim = "30px";
 const cellDim = "10px";
 
 const CA = ()  => {
-    // Represents how the CA should be updated at each step
-    const [ruleSet, setRuleset] = React.useState(() => {
-        // There are 8 possible combinations in a CA
-        return Array.from({length: numPerturbs}, (x, i) => i).map(decimal => {
-            return {
-                code: convertToBinary(decimal),
-                fill: false
-            }
-        })
-    })
 
-    /**
-     * Handle the setup of the initial CA state by changing the clicked cell color
-     */
-    const handleInitClick = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (event.currentTarget.style.backgroundColor === "black") {
-            event.currentTarget.style.backgroundColor = "white";
-        } else {
-            event.currentTarget.style.backgroundColor = "black";
-        }
-    }
-
-    /**
-     * Changes the rule of the given ID to the opposite outcome
-     * @param id The ID of the rule that should be adjusted
-     */
-    const handleRuleChange = (id:number) => {
-        const newRuleSet = produceRuleSet(ruleSet, (newRuleSet) => {
-            newRuleSet[id].fill = !newRuleSet[id].fill
-        });
-        setRuleset(newRuleSet);
-    }
+    const codes = Array.from({length: numPerturbs}, (x, i) => i).map(decimal => convertToBinary(decimal))
 
     /**
      * Evolve the CA over time.
      */
-    const handleEvolve = async () => {
-        let step = 0
-        while (step < numRows) {
-            const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
-            const rowPrev = Array.from(document.querySelectorAll(`div[id^="r${step}-"]`))  as any as Array<HTMLDivElement>;
-            rowCurrent.forEach((cell, idx) => {
-                const leftNeighbor = idx === 0 ? rowPrev.slice(-1)[0] : rowPrev[idx-1];
-                const rightNeighbor = idx === numCols-1 ? rowPrev[0] : rowPrev[idx+1];
-                const lFill = leftNeighbor.style.backgroundColor === 'black';
-                const rFill = rightNeighbor.style.backgroundColor === 'black';
-                const cFill = rowPrev[idx].style.backgroundColor === 'black';
-                if (!lFill && !cFill && !rFill) {
-                    // 000
-                    if (ruleSet[0].fill) {
-                      (
-                        rowCurrent[idx] as HTMLDivElement
-                      ).style.backgroundColor = "black";
-                    }
-                } else if (!lFill && !cFill && rFill) {
-                    // 001
-                    if (ruleSet[1].fill) {
-                      (
-                        rowCurrent[idx] as HTMLDivElement
-                      ).style.backgroundColor = "black";
-                    }
-                } else if (!lFill && cFill && !rFill) {
-                    // 010
-                    if (ruleSet[2].fill) {
-                      (
-                        rowCurrent[idx] as HTMLDivElement
-                      ).style.backgroundColor = "black";
-                    }
-                } else if (!lFill && cFill && rFill) {
-                    // 011
-                    if (ruleSet[3].fill) {
-                      (
-                        rowCurrent[idx] as HTMLDivElement
-                      ).style.backgroundColor = "black";
-                    }
-                } else if (lFill && !cFill && !rFill) {
-                    // 100
-                    if (ruleSet[4].fill) {
-                    (rowCurrent[idx] as HTMLDivElement).style.backgroundColor =
-                        "black";
-                    }
-                } else if (lFill && !cFill && rFill) {
-                    // 101
-                    if (ruleSet[5].fill) {
-                      (
-                        rowCurrent[idx] as HTMLDivElement
-                      ).style.backgroundColor = "black";
-                    }
-                } else if (lFill && cFill && !rFill) {
-                    // 110
-                    if (ruleSet[6].fill) {
-                      (
-                        rowCurrent[idx] as HTMLDivElement
-                      ).style.backgroundColor = "black";
-                    }
-                } else if (lFill && cFill && rFill) {
-                    // 111
-                    if (ruleSet[7].fill) {
-                      (
-                        rowCurrent[idx] as HTMLDivElement
-                      ).style.backgroundColor = "black";
-                    }
+    const handleEvolve = async (step, rules) => {
+        const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
+        const rowPrev = Array.from(document.querySelectorAll(`div[id^="r${step}-"]`))  as any as Array<HTMLDivElement>;
+        rowCurrent.forEach((cell, idx) => {
+            const leftNeighbor = idx === 0 ? rowPrev.slice(-1)[0] : rowPrev[idx-1];
+            const rightNeighbor = idx === numCols-1 ? rowPrev[0] : rowPrev[idx+1];
+            const lFill = leftNeighbor.style.backgroundColor === 'black';
+            const rFill = rightNeighbor.style.backgroundColor === 'black';
+            const cFill = rowPrev[idx].style.backgroundColor === 'black';
+            if (!lFill && !cFill && !rFill) {
+                // 000
+                if (rules[0] === "black") {
+                    (
+                    rowCurrent[idx] as HTMLDivElement
+                    ).style.backgroundColor = "black";
                 }
-            })
-            step++;
-            if (step < numRows) {
-                const row = document
-                  .querySelector(`div[id=r${step}]`)
-                row.classList.remove("hidden")
-                row.classList.add("animated", "fadeInDown");
-            }  
-            await sleep(500)          
-        }
+            } else if (!lFill && !cFill && rFill) {
+                // 001
+                if (rules[1] === "black") {
+                    (
+                    rowCurrent[idx] as HTMLDivElement
+                    ).style.backgroundColor = "black";
+                }
+            } else if (!lFill && cFill && !rFill) {
+                // 010
+                if (rules[2] === "black") {
+                    (
+                    rowCurrent[idx] as HTMLDivElement
+                    ).style.backgroundColor = "black";
+                }
+            } else if (!lFill && cFill && rFill) {
+                // 011
+                if (rules[3] === "black") {
+                    (
+                    rowCurrent[idx] as HTMLDivElement
+                    ).style.backgroundColor = "black";
+                }
+            } else if (lFill && !cFill && !rFill) {
+                // 100
+                if (rules[4] === "black") {
+                (rowCurrent[idx] as HTMLDivElement).style.backgroundColor =
+                    "black";
+                }
+            } else if (lFill && !cFill && rFill) {
+                // 101
+                if (rules[5] === "black") {
+                    (
+                    rowCurrent[idx] as HTMLDivElement
+                    ).style.backgroundColor = "black";
+                }
+            } else if (lFill && cFill && !rFill) {
+                // 110
+                if (rules[6] === "black") {
+                    (
+                    rowCurrent[idx] as HTMLDivElement
+                    ).style.backgroundColor = "black";
+                }
+            } else if (lFill && cFill && rFill) {
+                // 111
+                if (rules[7] === "black") {
+                    (
+                    rowCurrent[idx] as HTMLDivElement
+                    ).style.backgroundColor = "black";
+                }
+            }
+        })
+        if (step+1 < numRows) {
+            const row = document
+                .querySelector(`div[id=r${step+1}]`)
+            row.classList.remove("hidden")
+            row.classList.add("animated", "fadeInDown");
+        }   
     }
 
-    /**
-     * Visualize the given rule through HTML
-     */
-    const RuleCard = (rule: {code:string, fill:boolean, id: number}) => (
-        <Paper elevation={3}  style={{width: 90, height: 100}}>
-            <Stack spacing={0}>
-                <Grid container spacing={0}>
-                    {rule.code.split("").map((val, idx) => (
-                        <Grid item key={`${rule}-${idx}`}>
-                            <Cell filled={val === "1"}/>
-                        </Grid>
-                    ))}
-                </Grid>
-                <div style={{marginLeft: "auto", marginRight: "auto"}}>
-                    <ArrowDownwardIcon sx={{ fontSize: 30}} />
-                </div>
-                <div style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => handleRuleChange(rule.id)}>
-                    <Cell filled={rule.fill}/>
-                </div>
-            </Stack>
-        </Paper>
-    )
-
-    /**
-     * Generates the CA as JSX.
-     */
-    const Automaton = () => (
-          <Paper elevation={3} sx={{ width: "550px" }}>
-            <Stack spacing={0}>
-              {Array.from({ length: numRows }, (x, i) => i).map((row) => (
-                <Grid 
-                    container key={`r${row}`} 
-                    id={`r${row}`}
-                    className={row === 0 ? "" : "hidden"}
-                >
-                    <Grid item sx={{fontSize: "6px", width: "30px"}}>
-                        Step {row+1}
-                    </Grid>
-                    <Grid item>
-                        <Grid
-                        container
-                        spacing={0}
-                        >
-                            {Array.from({ length: numCols }, (x, i) => i).map((col) => (
-                                <Grid item key={`r${row}-c${col}`}>
-                                    <Cell 
-                                        filled={row===0 && col===Math.floor(numCols/2)} 
-                                        small 
-                                        props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} 
-                                    />
-                                </Grid>
-                            ))}
-                        </Grid>
-                    </Grid>
-                </Grid>
-            ))}
-            </Stack>
-          </Paper>
-    );
+    const runCA = () => {
+        console.log(PlayCircleIcon.toString())
+        const rules = codes.map(code => 
+            (document.querySelector(`div[id="${code}-rule"]`) as HTMLDivElement)
+            .style.backgroundColor
+            )
+        console.log(rules)
+        let step = 0
+        let runner = setInterval(function() {
+            console.log(step)
+            handleEvolve(step, rules)
+            step++
+         }, 500);
+         
+    }
 
     return (
       <>
@@ -205,16 +125,16 @@ const CA = ()  => {
             <Grid item xs={5} sx={{ marginRight: "auto" }}>
               <Stack spacing={1}>
                 <Grid container spacing={1}>
-                  {ruleSet.map((rule, idx) => (
-                    <Grid item key={`${rule.code}`}>
-                      <RuleCard code={rule.code} fill={rule.fill} id={idx} />
+                  {codes.map((code, idx) => (
+                    <Grid item key={`${code}`}>
+                      <RuleCard code={code} />
                     </Grid>
                   ))}
                 </Grid>
                 <IconButton 
                     color="primary" 
                     aria-label="simulate CA" 
-                    onClick={handleEvolve} 
+                    onClick={runCA} 
                     sx={{width: "max-content"}}
                 >
                     <PlayCircleIcon sx={{fontSize: 50}}/>
@@ -265,25 +185,76 @@ const Cell = ({ props = {}, small = false, filled = false }) => (
 );
 
 /**
- * Helper function to update the ruleset. Avoids mutating the state variable directly by making
- * a copy of the ruleset, mutating the copy and then setting the copy as the new ruleset
- * @param ruleSet - The current ruleset
- * @param callback - function that is supposed to mutate the ruleset
- * @returns The mutated ruleset
+ * Visualize the given rule through HTML
  */
-const produceRuleSet = (ruleSet, callback) => {
-    const newRuleSet = JSON.parse(JSON.stringify(ruleSet));
-    callback(newRuleSet);
-    return newRuleSet;
-};
+const RuleCard = ({code}:{code:string}) => {
+    const [fill, setFill] = React.useState(false)
 
-/**
- * Creates an awaitable promise that auto resolves after the given <ms> time.
- */
-const sleep = (ms:number)=> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+    return (<Paper elevation={3}  style={{width: 90, height: 100}}>
+        <Stack spacing={0}>
+            <Grid container spacing={0}>
+                {code.split("").map((val, idx) => (
+                    <Grid item key={`${code}-${idx}`}>
+                        <Cell filled={val === "1"}/>
+                    </Grid>
+                ))}
+            </Grid>
+            <div style={{marginLeft: "auto", marginRight: "auto"}}>
+                <ArrowDownwardIcon sx={{ fontSize: 30}} />
+            </div>
+            <div style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => setFill(!fill)}>
+                <Cell props={{id:`${code}-rule`}} filled={fill}/>
+            </div>
+        </Stack>
+    </Paper>)
 }
 
+/**
+ * Generates the CA as JSX.
+ */
+const Automaton = () => {
+     /**
+     * Handle the setup of the initial CA state by changing the clicked cell color
+     */
+    const handleInitClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (event.currentTarget.style.backgroundColor === "black") {
+            event.currentTarget.style.backgroundColor = "white";
+        } else {
+            event.currentTarget.style.backgroundColor = "black";
+        }
+    }
 
+    return (<Paper elevation={3} sx={{ width: "550px" }}>
+        <Stack spacing={0}>
+        {Array.from({ length: numRows }, (x, i) => i).map((row) => (
+            <Grid 
+                container key={`r${row}`} 
+                id={`r${row}`}
+                className={row === 0 ? "" : "hidden"}
+            >
+                <Grid item sx={{fontSize: "6px", width: "30px"}}>
+                    Step {row+1}
+                </Grid>
+                <Grid item>
+                    <Grid
+                    container
+                    spacing={0}
+                    >
+                        {Array.from({ length: numCols }, (x, i) => i).map((col) => (
+                            <Grid item key={`r${row}-c${col}`}>
+                                <Cell 
+                                    filled={row===0 && col===Math.floor(numCols/2)} 
+                                    small 
+                                    props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} 
+                                />
+                            </Grid>
+                        ))}
+                    </Grid>
+                </Grid>
+            </Grid>
+        ))}
+        </Stack>
+    </Paper>)
+}
 
 export default CA
