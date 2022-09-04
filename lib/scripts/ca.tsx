@@ -67,22 +67,28 @@ const CA = ()  => {
                     </Grid>
                   ))}
                 </Grid>
-                <IconButton 
-                    color="primary" 
-                    aria-label="simulate CA" 
-                    onClick={runCA} 
-                    sx={{width: "max-content"}}
-                >
-                    <PlayCircleIcon sx={{fontSize: 50}}/>
-                </IconButton>
-                <IconButton 
-                    color="primary" 
-                    aria-label="simulate CA" 
-                    onClick={useStopCA} 
-                    sx={{width: "max-content"}}
-                >
-                    <ReplayCircleFilledIcon sx={{fontSize: 50}}/>
-                </IconButton>
+                <Grid container>
+                    <Grid item>
+                        <IconButton 
+                            color="primary" 
+                            aria-label="simulate CA" 
+                            onClick={runCA} 
+                            sx={{width: "max-content"}}
+                        >
+                            <PlayCircleIcon sx={{fontSize: 50}}/>
+                        </IconButton>
+                    </Grid>
+                    <Grid item>
+                        <IconButton 
+                            color="primary" 
+                            aria-label="simulate CA" 
+                            onClick={useStopCA} 
+                            sx={{width: "max-content"}}
+                        >
+                            <ReplayCircleFilledIcon sx={{fontSize: 50}}/>
+                        </IconButton>
+                    </Grid>
+                </Grid>
               </Stack>
             </Grid>
           </Grid>
