@@ -8,7 +8,8 @@ import {
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import IconButton from '@mui/material/IconButton';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import ReplayCircleFilledIcon from '@mui/icons-material/ReplayCircleFilled';
+import PauseCircleFilledIcon from '@mui/icons-material/PauseCircleFilled';
+import StopCircleIcon from '@mui/icons-material/StopCircle';
 
 const numRows = 40
 const numCols = 52
@@ -27,12 +28,35 @@ const CA = ()  => {
 
     const codes = Array.from({length: numPerturbs}, (x, i) => i).map(decimal => convertToBinary(decimal))
     let runner;
+    let step = 0;
 
     const useStopCA = () => {
         try {
             clearInterval(runner)
         } catch (e) {}
+        step = 0
+        const pauseButton = (document.getElementById("pauseButton") as HTMLButtonElement)
+        pauseButton.disabled = true;
+        pauseButton.classList.add("Mui-disabled");
+        const stopButton = (document.getElementById("stopButton") as HTMLButtonElement)
+        stopButton.disabled = true;
+        stopButton.classList.add("Mui-disabled")
+        const startButton = (document.getElementById("startButton") as HTMLButtonElement)
+        startButton.disabled = false;
+        startButton.classList.remove("Mui-disabled")
         setRenderKey(renderKey+1)
+    }
+
+    const pauseCA = () => {
+        try {
+            clearInterval(runner)
+        } catch (e) {}
+        const pauseButton = (document.getElementById("pauseButton") as HTMLButtonElement)
+        pauseButton.disabled = true;
+        pauseButton.classList.add("Mui-disabled");
+        const startButton = (document.getElementById("startButton") as HTMLButtonElement)
+        startButton.disabled = false;
+        startButton.classList.remove("Mui-disabled")
     }
 
     const runCA = () => {
@@ -40,7 +64,15 @@ const CA = ()  => {
             (document.querySelector(`div[id="${code}-rule"]`) as HTMLDivElement)
             .style.backgroundColor
             )
-        let step = 0
+        const pauseButton = (document.getElementById("pauseButton") as HTMLButtonElement)
+        pauseButton.disabled = false;
+        pauseButton.classList.remove("Mui-disabled");
+        const stopButton = (document.getElementById("stopButton") as HTMLButtonElement)
+        stopButton.disabled = false;
+        stopButton.classList.remove("Mui-disabled")
+        const startButton = (document.getElementById("startButton") as HTMLButtonElement)
+        startButton.disabled = true;
+        startButton.classList.add("Mui-disabled")
         runner = setInterval(function() {
             handleEvolve(step, rules)
             step++
@@ -71,6 +103,7 @@ const CA = ()  => {
                     <Grid item>
                         <IconButton 
                             color="primary" 
+                            id="startButton"
                             aria-label="simulate CA" 
                             onClick={runCA} 
                             sx={{width: "max-content"}}
@@ -81,11 +114,25 @@ const CA = ()  => {
                     <Grid item>
                         <IconButton 
                             color="primary" 
+                            id="pauseButton"
+                            className="Mui-disabled"
+                            aria-label="simulate CA" 
+                            onClick={pauseCA} 
+                            sx={{width: "max-content"}}
+                        >
+                            <PauseCircleFilledIcon sx={{fontSize: 50}}/>
+                        </IconButton>
+                    </Grid>
+                    <Grid item>
+                        <IconButton 
+                            color="primary" 
+                            id="stopButton"
+                            className="Mui-disabled"
                             aria-label="simulate CA" 
                             onClick={useStopCA} 
                             sx={{width: "max-content"}}
                         >
-                            <ReplayCircleFilledIcon sx={{fontSize: 50}}/>
+                            <StopCircleIcon sx={{fontSize: 50}}/>
                         </IconButton>
                     </Grid>
                 </Grid>
