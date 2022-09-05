@@ -11,14 +11,14 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleFilledIcon from '@mui/icons-material/PauseCircleFilled';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 
-const numRows = 40
-const numCols = 52
+const numRows = 80
+const numCols = 104
 
 // Possible combinations of a cell neighborhood
 const numPerturbs = 8
 
 const ruleDim = "30px";
-const cellDim = "10px";
+const cellDim = "5px";
 
 /**
  * Cellular Automata JSX
@@ -54,9 +54,11 @@ const CA = ()  => {
         const pauseButton = (document.getElementById("pauseButton") as HTMLButtonElement)
         pauseButton.disabled = true;
         pauseButton.classList.add("Mui-disabled");
+        pauseButton.style.display = "none"
         const startButton = (document.getElementById("startButton") as HTMLButtonElement)
         startButton.disabled = false;
         startButton.classList.remove("Mui-disabled")
+        startButton.style.display = "inline-flex"
     }
 
     const runCA = () => {
@@ -66,6 +68,7 @@ const CA = ()  => {
             )
         const pauseButton = (document.getElementById("pauseButton") as HTMLButtonElement)
         pauseButton.disabled = false;
+        pauseButton.style.display = "inline-flex"
         pauseButton.classList.remove("Mui-disabled");
         const stopButton = (document.getElementById("stopButton") as HTMLButtonElement)
         stopButton.disabled = false;
@@ -73,6 +76,7 @@ const CA = ()  => {
         const startButton = (document.getElementById("startButton") as HTMLButtonElement)
         startButton.disabled = true;
         startButton.classList.add("Mui-disabled")
+        startButton.style.display = "none"
         runner = setInterval(function() {
             handleEvolve(step, rules)
             step++
@@ -118,7 +122,7 @@ const CA = ()  => {
                             className="Mui-disabled"
                             aria-label="simulate CA" 
                             onClick={pauseCA} 
-                            sx={{width: "max-content"}}
+                            sx={{width: "max-content", display: "none"}}
                         >
                             <PauseCircleFilledIcon sx={{fontSize: 50}}/>
                         </IconButton>
@@ -306,7 +310,7 @@ const Automaton = () => {
                 id={`r${row}`}
                 className={row === 0 ? "" : "hidden"}
             >
-                <Grid item sx={{fontSize: "6px", width: "30px"}}>
+                <Grid item sx={{fontSize: "3px", width: "30px"}}>
                     Step {row+1}
                 </Grid>
                 <Grid item>
