@@ -124,7 +124,7 @@ const CA = ()  => {
                     </Grid>
                   ))}
                 </Grid>
-                <Grid container spacing={3}>
+                <Grid container spacing={3} sx={{marginTop: "0px"}}>
                     <Grid item xs={5}>
                         Grid Size:
                     </Grid>
@@ -174,7 +174,7 @@ const CA = ()  => {
                             onClick={runCA} 
                             sx={{width: "max-content"}}
                         >
-                            <PlayCircleIcon sx={{fontSize: 60}}/>
+                            <PlayCircleIcon sx={{fontSize: 70}}/>
                         </IconButton>
                     </Grid>
                     <Grid item>
@@ -186,7 +186,7 @@ const CA = ()  => {
                             onClick={pauseCA} 
                             sx={{width: "max-content", display: "none"}}
                         >
-                            <PauseCircleFilledIcon sx={{fontSize: 60}}/>
+                            <PauseCircleFilledIcon sx={{fontSize: 70}}/>
                         </IconButton>
                     </Grid>
                     <Grid item>
@@ -198,7 +198,7 @@ const CA = ()  => {
                             onClick={useStopCA} 
                             sx={{width: "max-content"}}
                         >
-                            <StopCircleIcon sx={{fontSize: 60}}/>
+                            <StopCircleIcon sx={{fontSize: 70}}/>
                         </IconButton>
                     </Grid>
                 </Grid>
@@ -313,7 +313,7 @@ const convertToBinary = (x:number): string => {
 /**
  * Generates a CA cell JSX Element
  */
-const Cell = ({ props = {}, small = false, filled = false, sizeMultiplier=1 }) => (
+const Cell = ({ props = {}, small = false, filled = false, sizeMultiplier=1, pointer=false }) => (
   <Paper
     variant="outlined"
     square
@@ -321,6 +321,7 @@ const Cell = ({ props = {}, small = false, filled = false, sizeMultiplier=1 }) =
       backgroundColor: filled ? "black" : "white",
       width: small ? cellDimBase/Math.pow(2, sizeMultiplier-1) : ruleDim,
       height: small ? cellDimBase/Math.pow(2,sizeMultiplier-1) : ruleDim,
+      cursor: pointer? "pointer" : "inherit"
     }}
     {...props}
   />
@@ -345,7 +346,11 @@ const RuleCard = ({code}:{code:string}) => {
                 <ArrowDownwardIcon sx={{ fontSize: 30}} />
             </div>
             <div style={{marginLeft: "auto", marginRight: "auto"}} onClick={() => setFill(!fill)}>
-                <Cell props={{id:`${code}-rule`}} filled={fill}/>
+                <Cell 
+                    props={{id:`${code}-rule`}} 
+                    filled={fill}
+                    pointer
+                />
             </div>
         </Stack>
     </Paper>)
@@ -377,6 +382,7 @@ const Automaton = ({size}:{size:number}) => {
                 container key={`r${row}`} 
                 id={`r${row}`}
                 className={row === 0 ? "" : "hidden"}
+                style={row === 0 ? {cursor: "pointer"} : {}}
             >
                 <Grid item sx={{fontSize, width: "50px"}}>
                     Step {row+1}
