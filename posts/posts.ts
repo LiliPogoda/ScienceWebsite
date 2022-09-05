@@ -99,6 +99,15 @@ const posts: Array<Post> = [
         thumbnail: "TODO",
         categories: ["Chemistry"],
         abstract: "TODO"
+    },
+    {
+        id: "acid_base_weak",
+        title: "Acid & Base chemistry: Weak acids and bases",
+        author: "Esther-Philine Pogoda",
+        date: "2022-09-03",
+        thumbnail: "TODO",
+        categories: ["Chemistry"],
+        abstract: "TODO"
     }
 ]
 
