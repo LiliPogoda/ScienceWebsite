@@ -10,21 +10,25 @@ import IconButton from '@mui/material/IconButton';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleFilledIcon from '@mui/icons-material/PauseCircleFilled';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
-
-const numRows = 80
-const numCols = 104
+import Slider from '@mui/material/Slider';
 
 // Possible combinations of a cell neighborhood
 const numPerturbs = 8
 
 const ruleDim = "30px";
-const cellDim = "5px";
+
+const cellDimBase = 20
+const numRowsBase = 20
+const numColsBase = 25
+const fontSizeBase = 12
+const boardSize = 550
 
 /**
  * Cellular Automata JSX
  */
 const CA = ()  => {
     const [renderKey, setRenderKey] = React.useState(0)
+    const [gridSize, setGridSize] = React.useState(1)
 
     const codes = Array.from({length: numPerturbs}, (x, i) => i).map(decimal => convertToBinary(decimal))
     let runner;
@@ -78,13 +82,20 @@ const CA = ()  => {
         startButton.classList.add("Mui-disabled")
         startButton.style.display = "none"
         runner = setInterval(function() {
-            handleEvolve(step, rules)
+            handleEvolve(step, rules, gridSize)
             step++
-            if (step >= numRows) {
+            if (step >= numRowsBase*Math.pow(2,gridSize-1)) {
                 clearInterval(runner)
             }
          }, 500);
          
+    }
+
+    const handleGridSizeChange = (newSize:number) => {
+        try {
+            clearInterval(runner)
+        } catch (e) {}
+        setGridSize(newSize)
     }
 
     return (
@@ -92,7 +103,7 @@ const CA = ()  => {
         <Container style={{width: "100%", padding: 0, margin:0}}>
           <Grid container spacing={1}>
             <Grid item sx={{ marginLeft: "auto" }}>
-              <Automaton key={renderKey}/>
+              <Automaton key={renderKey} size={gridSize} />
             </Grid>
             <Grid item xs={5} sx={{ marginRight: "auto" }}>
               <Stack spacing={1}>
@@ -102,6 +113,23 @@ const CA = ()  => {
                       <RuleCard code={code} />
                     </Grid>
                   ))}
+                </Grid>
+                <Grid container spacing={3}>
+                    <Grid item>
+                        Grid Size:
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Slider
+                            aria-label="GridSize"
+                            defaultValue={gridSize}
+                            valueLabelDisplay="auto"
+                            step={1}
+                            marks
+                            min={1}
+                            max={4}
+                            onChangeCommitted={(_, number) => handleGridSizeChange(number as number)}
+                        />
+                    </Grid>
                 </Grid>
                 <Grid container>
                     <Grid item>
@@ -151,7 +179,9 @@ const CA = ()  => {
 /**
  * Evolve the CA over time.
  */
-const handleEvolve = async (step:number, rules:Array<string>) => {
+const handleEvolve = async (step:number, rules:Array<string>, size:number) => {
+    const numCols = numColsBase * Math.pow(2, size-1)
+    const numRows = numRowsBase * Math.pow(2, size-1)
     const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
     const rowPrev = Array.from(document.querySelectorAll(`div[id^="r${step}-"]`))  as any as Array<HTMLDivElement>;
     rowCurrent.forEach((cell, idx) => {
@@ -249,14 +279,14 @@ const convertToBinary = (x:number): string => {
 /**
  * Generates a CA cell JSX Element
  */
-const Cell = ({ props = {}, small = false, filled = false }) => (
+const Cell = ({ props = {}, small = false, filled = false, sizeMultiplier=1 }) => (
   <Paper
     variant="outlined"
     square
     style={{
       backgroundColor: filled ? "black" : "white",
-      width: small ? cellDim : ruleDim,
-      height: small ? cellDim : ruleDim,
+      width: small ? cellDimBase/Math.pow(2, sizeMultiplier-1) : ruleDim,
+      height: small ? cellDimBase/Math.pow(2,sizeMultiplier-1) : ruleDim,
     }}
     {...props}
   />
@@ -290,7 +320,12 @@ const RuleCard = ({code}:{code:string}) => {
 /**
  * Generates the CA as JSX.
  */
-const Automaton = () => {
+const Automaton = ({size}:{size:number}) => {
+
+    const numRows = numRowsBase * Math.pow(2, size-1)
+    const numCols = numColsBase * Math.pow(2, size-1)
+    console.log(boardSize - (numCols* 20))
+    const fontSize = fontSizeBase / Math.pow(2, size-1)
      /**
      * Handle the setup of the initial CA state by changing the clicked cell color
      */
@@ -302,7 +337,7 @@ const Automaton = () => {
         }
     }
 
-    return (<Paper elevation={3} sx={{ width: "550px" }}>
+    return (<Paper elevation={3} sx={{ width: boardSize }}>
         <Stack spacing={0}>
         {Array.from({ length: numRows }, (x, i) => i).map((row) => (
             <Grid 
@@ -310,7 +345,7 @@ const Automaton = () => {
                 id={`r${row}`}
                 className={row === 0 ? "" : "hidden"}
             >
-                <Grid item sx={{fontSize: "3px", width: "30px"}}>
+                <Grid item sx={{fontSize, width: "50px"}}>
                     Step {row+1}
                 </Grid>
                 <Grid item>
@@ -323,6 +358,7 @@ const Automaton = () => {
                                 <Cell 
                                     filled={row===0 && col===Math.floor(numCols/2)} 
                                     small 
+                                    sizeMultiplier={size}
                                     props={{ id: `r${row}-c${col}`, onClick: handleInitClick}} 
                                 />
                             </Grid>
