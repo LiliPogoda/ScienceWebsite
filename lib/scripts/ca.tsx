@@ -324,7 +324,6 @@ const Automaton = ({size}:{size:number}) => {
 
     const numRows = numRowsBase * Math.pow(2, size-1)
     const numCols = numColsBase * Math.pow(2, size-1)
-    console.log(boardSize - (numCols* 20))
     const fontSize = fontSizeBase / Math.pow(2, size-1)
      /**
      * Handle the setup of the initial CA state by changing the clicked cell color
