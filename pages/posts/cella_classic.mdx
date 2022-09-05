@@ -10,6 +10,84 @@ Wolfram, in his 2002 book 'A New kind of Science' [[2]](#cred_2), used them to c
 post, I want to explore the most simple type of Cellular Automata (CA). We will see how even from the most simple rules and initial conditions, richness and complexity
 organically arises.
 
+# But What is a Cellular Automaton
+
+As the name suggests, a CA is an automaton (i.e. a machine following a pre-defined set of rules) acting on a structured set of cells. Each cell has a state, the state
+of each cell changes over time as a result of the action applied to it. The action is pre-defined and based on the state of the cell itself and its neighboring cells. This is as deep as the definition
+of CAs goes. How exactly such a rule looks like depends on the definition of the cell and the structure they are arranged in. These structures can get quite intricate, such as
+in the 'Lenia'[[3]](#cred_3) CA that is used to simulate Artificial Life. 
+
+## The simple Wolfram CA
+
+But CAs don't need to be complex. In Wolfram's first experiments, he used the most simple CA possible:
+
+1. A cell can be in one of two states:
+    * State 1 is represented with a white tile
+    * State 2 is represented with a black tile
+2. The cells are arranged on a line as in [Fig.1](#fig1)
+
+<a name="fig1"></a>
+<figure>
+  <img src="/ca/caState.png" style={{marginLeft: "auto", marginRight: "auto", height: 50}} />
+  <figcaption 
+    style={{
+      marginLeft: "auto", 
+      marginRight: "auto", 
+      width: "max-content"
+    }}
+  >
+    Fig.1: Example of a CA consisting of six cells. 
+  </figcaption>
+</figure>
+
+Now that the structure of the automaton is defined, we can think about the actions. Recalling the general definition of CAs, an action is based on the state of the cell and
+its neighboring cells. In the case of the simple Wolfram CA, a cell has exactly two neighbors: one to its' left and one to its' right. Each neighbor can be either in state 1 or 
+in state 2. Additionally, the cell itself can be in either of the two states.
+
+import ChoiceQuestion from "../../components/choiceQuestion"
+
+export const question = "How many possible situations can arise from the cell and its 2 neighbors?"
+
+export const choices = [
+  "4",
+  "1024",
+  "16",
+  "8"
+]
+
+export const explanation = (
+  <>
+    Correct! There are 3 cells that each have 2 possible states. To get the total number of combinations,
+    We calculate 2^3=8 
+  </>
+)
+
+export const hint = "Hint: Think about in how many ways you could arrange the cells."
+
+<ChoiceQuestion 
+  question={question} 
+  choices={choices}
+  hint={hint} 
+  answerIdx={3}
+  explanation={explanation}
+/>
+
+
+
+# Interactive Automaton
+
+<figure>
+  <img src="/ca/ruleCard.png" style={{marginLeft: "auto", marginRight: "auto", height: 250}} />
+  <figcaption 
+    style={{
+      marginLeft: "auto", 
+      marginRight: "auto", 
+      width: "max-content"
+    }}
+  >
+    Fig.2: The rule cards of the cellular automaton visualize how to perform updates
+  </figcaption>
+</figure>
 
 import CA from "../../lib/scripts/ca"
 
@@ -21,11 +99,13 @@ import CA from "../../lib/scripts/ca"
 
 [2]<a name="cred_2"></a> Wolfram, S., 2002. A new kind of science. Champaign, Ill.: Wolfram Media.
 
+[3]<a name="cred_3"></a> Chan, B.W.C., 2018. Lenia-biology of artificial life. arXiv preprint arXiv:1812.05433.
+
 
 import LayoutPostWrapper from "../../components/layoutPostWrapper"
 
 export default ({ children }) => (
-  <LayoutPostWrapper pageIdx={2} title="Cellular Automata: Chaos from Simplicity" date="2022-09-02">
+  <LayoutPostWrapper pageIdx={3} title="Cellular Automata: Chaos from Simplicity" date="2022-09-02">
     {children}
   </LayoutPostWrapper>
 )
