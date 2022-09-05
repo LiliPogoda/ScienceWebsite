@@ -116,7 +116,7 @@ const CA = ()  => {
               <Automaton key={renderKey} size={gridSize} />
             </Grid>
             <Grid item xs={5} sx={{ marginRight: "auto" }}>
-              <Stack spacing={1}>
+              <Stack>
                 <Grid container spacing={1}>
                   {codes.map((code, idx) => (
                     <Grid item key={`${code}`}>
@@ -125,7 +125,7 @@ const CA = ()  => {
                   ))}
                 </Grid>
                 <Grid container spacing={3}>
-                    <Grid item>
+                    <Grid item xs={5}>
                         Grid Size:
                     </Grid>
                     <Grid item xs={4}>
@@ -142,7 +142,7 @@ const CA = ()  => {
                     </Grid>
                 </Grid>
                 <Grid container spacing={3}>
-                    <Grid item>
+                    <Grid item xs={5}>
                         Animation Speed:
                     </Grid>
                     <Grid item xs={4}>
@@ -158,7 +158,14 @@ const CA = ()  => {
                         />
                     </Grid>
                 </Grid>
-                <Grid container>
+                <Grid 
+                    container 
+                    sx={{
+                        width: "max-content", 
+                        marginLeft: "auto",
+                        marginRight: "auto"
+                    }}
+                >
                     <Grid item>
                         <IconButton 
                             color="primary" 
@@ -167,7 +174,7 @@ const CA = ()  => {
                             onClick={runCA} 
                             sx={{width: "max-content"}}
                         >
-                            <PlayCircleIcon sx={{fontSize: 50}}/>
+                            <PlayCircleIcon sx={{fontSize: 60}}/>
                         </IconButton>
                     </Grid>
                     <Grid item>
@@ -179,7 +186,7 @@ const CA = ()  => {
                             onClick={pauseCA} 
                             sx={{width: "max-content", display: "none"}}
                         >
-                            <PauseCircleFilledIcon sx={{fontSize: 50}}/>
+                            <PauseCircleFilledIcon sx={{fontSize: 60}}/>
                         </IconButton>
                     </Grid>
                     <Grid item>
@@ -191,7 +198,7 @@ const CA = ()  => {
                             onClick={useStopCA} 
                             sx={{width: "max-content"}}
                         >
-                            <StopCircleIcon sx={{fontSize: 50}}/>
+                            <StopCircleIcon sx={{fontSize: 60}}/>
                         </IconButton>
                     </Grid>
                 </Grid>
