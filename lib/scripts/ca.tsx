@@ -29,6 +29,7 @@ const boardSize = 550
 const CA = ()  => {
     const [renderKey, setRenderKey] = React.useState(0)
     const [gridSize, setGridSize] = React.useState(1)
+    const [animSpeed, setAnimSpeed] = React.useState(1)
 
     const codes = Array.from({length: numPerturbs}, (x, i) => i).map(decimal => convertToBinary(decimal))
     let runner;
@@ -42,12 +43,14 @@ const CA = ()  => {
         const pauseButton = (document.getElementById("pauseButton") as HTMLButtonElement)
         pauseButton.disabled = true;
         pauseButton.classList.add("Mui-disabled");
+        pauseButton.style.display = "none"
         const stopButton = (document.getElementById("stopButton") as HTMLButtonElement)
         stopButton.disabled = true;
         stopButton.classList.add("Mui-disabled")
         const startButton = (document.getElementById("startButton") as HTMLButtonElement)
         startButton.disabled = false;
         startButton.classList.remove("Mui-disabled")
+        startButton.style.display = "inline-flex"
         setRenderKey(renderKey+1)
     }
 
@@ -82,12 +85,12 @@ const CA = ()  => {
         startButton.classList.add("Mui-disabled")
         startButton.style.display = "none"
         runner = setInterval(function() {
-            handleEvolve(step, rules, gridSize)
+            handleEvolve(step, rules, gridSize, animSpeed)
             step++
             if (step >= numRowsBase*Math.pow(2,gridSize-1)) {
                 clearInterval(runner)
             }
-         }, 500);
+         }, 500 - (100 * (animSpeed -1)));
          
     }
 
@@ -96,6 +99,13 @@ const CA = ()  => {
             clearInterval(runner)
         } catch (e) {}
         setGridSize(newSize)
+    }
+
+    const handleSpeedChange= (newSpeed:number) => {
+        try {
+            clearInterval(runner)
+        } catch (e) {}
+        setAnimSpeed(newSpeed)
     }
 
     return (
@@ -128,6 +138,23 @@ const CA = ()  => {
                             min={1}
                             max={4}
                             onChangeCommitted={(_, number) => handleGridSizeChange(number as number)}
+                        />
+                    </Grid>
+                </Grid>
+                <Grid container spacing={3}>
+                    <Grid item>
+                        Animation Speed:
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Slider
+                            aria-label="AnimSpeed"
+                            defaultValue={animSpeed}
+                            valueLabelDisplay="auto"
+                            step={1}
+                            marks
+                            min={1}
+                            max={4}
+                            onChangeCommitted={(_, number) => handleSpeedChange(number as number)}
                         />
                     </Grid>
                 </Grid>
@@ -179,7 +206,7 @@ const CA = ()  => {
 /**
  * Evolve the CA over time.
  */
-const handleEvolve = async (step:number, rules:Array<string>, size:number) => {
+const handleEvolve = async (step:number, rules:Array<string>, size:number, animSpeed:number) => {
     const numCols = numColsBase * Math.pow(2, size-1)
     const numRows = numRowsBase * Math.pow(2, size-1)
     const rowCurrent = document.querySelectorAll(`div[id^="r${step+1}-"]`);
@@ -251,7 +278,7 @@ const handleEvolve = async (step:number, rules:Array<string>, size:number) => {
         const row = document
             .querySelector(`div[id=r${step+1}]`)
         row.classList.remove("hidden")
-        row.classList.add("animated", "fadeInDown");
+        row.classList.add(`animated${animSpeed}`, "fadeInDown");
     }   
 }
 
