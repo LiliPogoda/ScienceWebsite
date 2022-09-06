@@ -49,24 +49,77 @@ export default function CAHint() {
                         sx={{textAlign: "center"}}
                         color="inherit"
                     >
-                        Try out the following combinations:
+                        Try out the following combinations of rules on the cards above:
                     </Typography>
                     <Carousel
                         IndicatorIcon={<HorizontalRuleIcon/>}
                         animation="fade" 
                         navButtonsAlwaysVisible
                         interval={8000}
+                        autoPlay={false}
                     >
-                        <Stack>
-                            {[[false, true, false, true], [true, false, true, false]].map((row, idx) => (
+                        <Stack 
+                            sx={{
+                                width: "max-content",
+                                marginLeft: "auto",
+                                marginRight: "auto"
+                            }}
+                        >
+                            {[[false, true, true, true], [true, false, false, false]].map((row, idx) => (
                                 <Grid key={`rule30-row${idx}`}container>
                                     {row.map((fill, colIdx) => (
-                                        <Grid key={`rule30-${colIdx}`} item sx={{marginRight: "1px"}}>
-                                        <Cell filled={fill}/>
-                                    </Grid>
+                                        <Grid 
+                                            key={`rule30-${colIdx}`} 
+                                            item 
+                                            sx={{marginRight: "1px", marginBottom: "1px"}}
+                                        >
+                                            <Cell filled={fill}/>
+                                        </Grid>
                                     ))}
                                 </Grid>
                             ))}
+                        </Stack>
+                        <Stack 
+                            sx={{
+                                width: "max-content",
+                                marginLeft: "auto",
+                                marginRight: "auto"
+                            }}
+                        >
+                            {[[false, true, false, true], [true, false, true, false]].map((row, idx) => (
+                                <Grid key={`rule30-row${idx}`}container>
+                                    {row.map((fill, colIdx) => (
+                                        <Grid 
+                                            key={`rule30-${colIdx}`} 
+                                            item 
+                                            sx={{marginRight: "1px", marginBottom: "1px"}}
+                                        >
+                                            <Cell filled={fill}/>
+                                        </Grid>
+                                    ))}
+                                </Grid>
+                            ))}
+                        </Stack>
+                        <Stack 
+                            sx={{
+                                width: "max-content",
+                                marginLeft: "auto",
+                                marginRight: "auto"
+                            }}
+                        >
+                            {[[false, true, true, true], [false, true, true, false]].map((row, idx) => (
+                                    <Grid key={`rule30-row${idx}`}container>
+                                        {row.map((fill, colIdx) => (
+                                            <Grid 
+                                                key={`rule30-${colIdx}`} 
+                                                item 
+                                                sx={{marginRight: "1px", marginBottom: "1px"}}
+                                            >
+                                                <Cell filled={fill}/>
+                                            </Grid>
+                                        ))}
+                                    </Grid>
+                                ))}
                         </Stack>
                     </Carousel>
                 </Stack>
