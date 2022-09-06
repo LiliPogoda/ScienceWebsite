@@ -1,3 +1,4 @@
+<strong> Status: WIP </strong>
 # Introduction
 
 Galaxy formations, solar systems, biological organisms and the intricate assembly of molecules. The universe is full of complexity at every scale.
@@ -13,9 +14,12 @@ organically arises.
 # But What is a Cellular Automaton
 
 As the name suggests, a CA is an automaton (i.e. a machine following a pre-defined set of rules) acting on a structured set of cells. Each cell has a state, the state
-of each cell changes over time as a result of the action applied to it. The action is pre-defined and based on the state of the cell itself and its neighboring cells. This is as deep as the definition
-of CAs goes. How exactly such a rule looks like depends on the definition of the cell and the structure they are arranged in. These structures can get quite intricate, such as
-in the 'Lenia'[[3]](#cred_3) CA that is used to simulate Artificial Life. 
+of each cell changes over time as a result of the action applied to it. The action is pre-defined and based on:
+- the state of the cell itself 
+- the state of its neighboring cells
+
+This is as deep as the definition of CAs goes. How exactly a rule looks like depends on the definition of the cell and the structure they are arranged in. 
+These structures can get quite intricate, such as in the 'Lenia'[[3]](#cred_3) CA that is used to simulate Artificial Life. 
 
 ## The simple Wolfram CA
 
@@ -24,7 +28,7 @@ But CAs don't need to be complex. In Wolfram's first experiments, he used the mo
 1. A cell can be in one of two states:
     * State 1 is represented with a white tile
     * State 2 is represented with a black tile
-2. The cells are arranged on a line as in [Fig.1](#fig1)
+2. The cells are arranged on a line as in [(Fig.1)](#fig1)
 
 <a name="fig1"></a>
 <figure>
@@ -46,7 +50,7 @@ in state 2. Additionally, the cell itself can be in either of the two states.
 
 import ChoiceQuestion from "../../components/choiceQuestion"
 
-export const question = "How many possible situations can arise from the cell and its 2 neighbors?"
+export const question = "Question: How many possible situations can arise from the cell and its 2 neighbors?"
 
 export const choices = [
   "4",
@@ -72,12 +76,13 @@ export const hint = "Hint: Think about in how many ways you could arrange the ce
   explanation={explanation}
 />
 
+We can define a rule for each of these situations. E.g.: <em>'If the left neighbor has a black tile,
+the right neighbor a black tile, and the cell itself a white tile, the cell shall become black at the next step'.</em>
+[(Fig.2)](#fig2) visualizes the rule I have just described.
 
-
-# Interactive Automaton
-
+<a name="fig2"></a>
 <figure>
-  <img src="/ca/ruleCard.png" style={{marginLeft: "auto", marginRight: "auto", height: 250}} />
+  <img src="/ca/ruleCard.png" style={{marginLeft: "auto", marginRight: "auto", height: 150}} />
   <figcaption 
     style={{
       marginLeft: "auto", 
@@ -89,9 +94,51 @@ export const hint = "Hint: Think about in how many ways you could arrange the ce
   </figcaption>
 </figure>
 
+A <em>ruleset</em> has a defined rule for each possible situation. A rule can have two outcomes: either the cell
+becomes black or white at the next step. We know the amount of possible situations (8) and we know the amount of possible
+outcomes for each situation (2).
+
+export const question2 = "Question: How many possible ruleset can we define for this automaton?"
+
+export const choices2 = [
+  "2048",
+  "256",
+  "16",
+  "1024"
+]
+
+export const explanation2 = (
+  <>
+    Correct! There are 256 possible rulesets for this automaton. To get the total number of combinations,
+    We calculate 2^8=256 
+  </>
+)
+
+export const hint2 = "Hint: The solution is similar to th previous question. Think about the number of possible combinations."
+
+<ChoiceQuestion 
+  question={question2} 
+  choices={choices2}
+  hint={hint2} 
+  answerIdx={1}
+  explanation={explanation2}
+/>
+
+# Interactive Automaton
+
+We now understand how the classic Wolfram CA works in theory. What is left is to see it in practice. For this purpose,
+I have prepared an [interactive CA](#ca_interactive). In order to try it out, you can:
+
+1. Define the ruleset by clicking on the 'outcome' cells on the rule cards
+2. Adjust the size of the grid and the animation speed to your liking
+2. Define the starting state of the automaton by clicking on the cells
+3. Run the CA
+
 import CA from "../../lib/scripts/ca"
 
+<a name="ca_interactive"></a>
 <CA />
+
 
 # Credits
 
