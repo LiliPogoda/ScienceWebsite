@@ -46,10 +46,11 @@ export default function CAHint() {
                         <CloseIcon sx={{fontSize: 20}}/>
                     </IconButton>
                     <Typography 
-                        sx={{textAlign: "center"}}
+                        sx={{textAlign: "center", fontSize: 16}}
                         color="inherit"
                     >
-                        Try out the following combinations of rules on the cards above:
+                        Try out the following combinations of rules on the cards above 
+                        - Can you predict what will happen?
                     </Typography>
                     <Carousel
                         IndicatorIcon={<HorizontalRuleIcon/>}
