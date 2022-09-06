@@ -4,12 +4,15 @@ import {
     Grid,
     Stack,
     Typography,
-    Button
+    Button,
+    Paper
   } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Carousel from 'react-material-ui-carousel'
+import HorizontalRuleIcon from '@mui/icons-material/HorizontalRule';
 
 
 const HtmlTooltip = styled(({ className, ...props }: TooltipProps) => (
@@ -32,27 +35,40 @@ export default function CAHint() {
             onMouseEnter={() => setShow(true)}
             title={
             <React.Fragment>
-                <IconButton 
-                    color="primary" 
-                    id="closePopover"
-                    aria-label="close popover" 
-                    onClick={() => setShow(false)} 
-                    sx={{width: "max-content", marginLeft: "auto"}}
-                >
-                    <CloseIcon sx={{fontSize: 20}}/>
-                </IconButton>
-                <Typography color="inherit">Try out the following combinations:</Typography>
                 <Stack>
-                    <Grid container>
-                        <Grid item sx={{fontSize: 19}}>
-                            1.
-                        </Grid>
-                        {[false, true, false, true, true, false, true, false].map((fill, idx) => (
-                            <Grid key={`rule30-${idx}`} item sx={{marginRight: "1px"}}>
-                                <Cell filled={fill}/>
-                            </Grid>
-                        ))}
-                    </Grid>
+                    <IconButton 
+                        color="primary" 
+                        id="closePopover"
+                        aria-label="close popover" 
+                        onClick={() => setShow(false)} 
+                        sx={{width: "max-content", marginLeft: "auto"}}
+                    >
+                        <CloseIcon sx={{fontSize: 20}}/>
+                    </IconButton>
+                    <Typography 
+                        sx={{textAlign: "center"}}
+                        color="inherit"
+                    >
+                        Try out the following combinations:
+                    </Typography>
+                    <Carousel
+                        IndicatorIcon={<HorizontalRuleIcon/>}
+                        animation="fade" 
+                        navButtonsAlwaysVisible
+                        interval={8000}
+                    >
+                        <Stack>
+                            {[[false, true, false, true], [true, false, true, false]].map((row, idx) => (
+                                <Grid key={`rule30-row${idx}`}container>
+                                    {row.map((fill, colIdx) => (
+                                        <Grid key={`rule30-${colIdx}`} item sx={{marginRight: "1px"}}>
+                                        <Cell filled={fill}/>
+                                    </Grid>
+                                    ))}
+                                </Grid>
+                            ))}
+                        </Stack>
+                    </Carousel>
                 </Stack>
             </React.Fragment>
             }
