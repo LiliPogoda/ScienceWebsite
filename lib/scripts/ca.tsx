@@ -3,7 +3,9 @@ import {
     Grid,
     Paper,
     Stack,
-    Container
+    Container,
+    Typography,
+    Button
   } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import IconButton from '@mui/material/IconButton';
@@ -11,6 +13,8 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleFilledIcon from '@mui/icons-material/PauseCircleFilled';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import Slider from '@mui/material/Slider';
+import CAHint from "./caHint";
+
 
 // Possible combinations of a cell neighborhood
 const numPerturbs = 8
@@ -167,6 +171,9 @@ const CA = ()  => {
                     }}
                 >
                     <Grid item>
+                        <CAHint />
+                    </Grid>
+                    <Grid item>
                         <IconButton 
                             color="primary" 
                             id="startButton"
@@ -313,7 +320,7 @@ const convertToBinary = (x:number): string => {
 /**
  * Generates a CA cell JSX Element
  */
-const Cell = ({ props = {}, small = false, filled = false, sizeMultiplier=1, pointer=false }) => (
+export const Cell = ({ props = {}, small = false, filled = false, sizeMultiplier=1, pointer=false }) => (
   <Paper
     variant="outlined"
     square
