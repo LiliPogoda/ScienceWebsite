@@ -93,12 +93,12 @@ const posts: Array<Post> = [
     },
     {
         id: "cella_classic",
-        title: "Cellular Automata: Chaos from Simplicity",
+        title: "Cellular Automata: Introduction",
         author: "Jan Schering",
         date: "2022-09-02",
-        thumbnail: "TODO",
+        thumbnail: "/ca/caEx1.png",
         categories: ["Programming", "Math"],
-        abstract: "Intro to the beauty of Cellular Automata"
+        abstract: "Complexity is everywhere, but where does it come from? Introduction to the beauty of Cellular Automata"
     }
 ]
 
