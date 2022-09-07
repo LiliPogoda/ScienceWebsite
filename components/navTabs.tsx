@@ -32,7 +32,9 @@ export default function NavTabs({ pageIdx }: { pageIdx: number }) {
       <StyledTabs
         value={activeTab}
         aria-label="nav tabs"
-      >
+      > 
+        
+        <Tab icon={<img src="/img/owl4.png" style={{height: 90}} />} sx={{color: "black !important", fontFamily: "math", fontSize: "larger"}} aria-label="label" label="Izumi" />
         <StyledTab label={Constants.LABEL_LANDING} href={{
             pathname: "/",
             query: {tab: 0, category: "Home"}, // the data
