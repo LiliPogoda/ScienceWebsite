@@ -26,7 +26,7 @@ export default function Layout({
   return (
     <div className={styles.container}>
       <Head>
-        <link rel="icon" href="/acs.png" />
+        <link rel="icon" href="/img/owl4.png" />
         <meta name="description" content={Constants.META_DESCRIPTION} />
         <meta name="og:title" content={Constants.SITE_TITLE} />
         <title>{Constants.SITE_TITLE}</title>
