@@ -45,7 +45,7 @@ export default function Layout({
         </Container>
       </header>
       <main className={styles.relative} style={{zIndex: "1"}}>
-        <Container maxWidth="lg" className={utilStyles.mainContainer}>
+        <Container maxWidth="lg" className={utilStyles.mainContainer} sx={{minWidth: {xs: "fit-content"}}}>
           <Stack spacing={1}>
             {children}
             <footer style={{color: "gray", position: "relative", bottom: 0}}><small>&copy; Copyright 2022, Jan Schering & Esther-Philine Dorsch</small></footer> 
