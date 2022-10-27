@@ -24,7 +24,7 @@ export default function Layout({
   pageIdx?: number;
 }) {
   return (
-    <div className={styles.container}>
+    <Container className={styles.container} sx={{minWidth: "fit-content"}}>
       <Head>
         <link rel="icon" href="/img/owl4.png" />
         <meta name="description" content={Constants.META_DESCRIPTION} />
@@ -52,6 +52,6 @@ export default function Layout({
           </Stack>
         </Container>
       </main>
-    </div>
+    </Container>
   );
 }
