@@ -1,7 +1,20 @@
 <img src="/ca/banner.png" style={{width: "100%", marginLeft: "auto", marginRight: "auto"}}/>
 
+import TOC from "../../components/toc"
 
-# Introduction
+export const toc = [
+  {anchor: "intro", title: "Introduction"},
+  {anchor: "explanation", title: "But What is a Cellular Automaton?"},
+  {anchor: "wolframCA", title: "The simple Wolfram Cellular Automaton"},
+  {anchor: "interactive", title: "Interactive Cellular Automaton"},
+  {anchor: "discussion", title: "Discussion"},
+  {anchor: "credits", title: "Credits"}
+]
+
+<TOC toc={toc} />
+
+
+# Introduction <a name="intro"></a>
 
 Galaxy formations, solar systems, biological organisms and the intricate assembly of molecules. The universe is full of complexity at every scale.
 In fact, this complexity is so vast that for part of the population, it serves as a proof [[1]](#cred_1) of an intelligent designer (i.e. a "god").
@@ -13,7 +26,7 @@ Wolfram, in his 2002 book 'A New kind of Science' [[2]](#cred_2), used them to c
 post, I want to explore the most simple type of Cellular Automata (CA). We will see how even from the most simple rules and initial conditions, richness and complexity
 organically arises.
 
-# But What is a Cellular Automaton
+# But What is a Cellular Automaton? <a name="explanation"></a>
 
 As the name suggests, a CA is an automaton (i.e. a machine following a pre-defined set of rules) acting on a structured set of cells. Each cell has a state, the state
 of each cell changes over time as a result of the action applied to it. The action is pre-defined and based on:
@@ -23,7 +36,7 @@ of each cell changes over time as a result of the action applied to it. The acti
 This is as deep as the definition of CAs goes. How exactly a rule looks like depends on the definition of the cell and the structure they are arranged in. 
 These structures can get quite intricate, such as in the 'Lenia'[[3]](#cred_3) CA that is used to simulate Artificial Life. 
 
-## The simple Wolfram CA
+# The simple Wolfram Cellular Automaton <a name="wolframCA"></a>
 
 But CAs don't need to be complex. In Wolfram's first experiments, he used the most simple CA possible:
 
@@ -126,7 +139,7 @@ export const hint2 = "Hint: The solution is similar to th previous question. Thi
   explanation={explanation2}
 />
 
-# Interactive Automaton
+# Interactive Cellular Automaton <a name="interactive"></a>
 
 We now understand how the classic Wolfram CA works in theory. What is left is to see it in practice. For this purpose,
 I have prepared an [interactive CA](#ca_interactive). In order to try it out, you can:
@@ -141,7 +154,7 @@ import CA from "../../lib/scripts/ca"
 <a name="ca_interactive"></a>
 <CA />
 
-# Discussion
+# Discussion <a name="discussion"></a>
 
 If you tried out the rulesets suggested in the interactive CA, you will have come across patterns like the 
 ones shown in [(Fig.3)](#fig3). I hope that I am not alone in thinking, that it is beautiful, what intricate patterns
@@ -167,7 +180,7 @@ In future posts, I aim to look at more modern applications of Cellular Automata.
 introduction to the topic and provides a glimpse into the possibilities that more sophisticated CAs can provide.
 
 
-# Credits
+# Credits <a name="credits"></a>
 
 [1]<a name="cred_1"></a> Dembski, W.A., 2002. Intelligent Design: The Bridge Between Science Theology. InterVarsity Press.
 
