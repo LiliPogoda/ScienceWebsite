@@ -99,6 +99,15 @@ const posts: Array<Post> = [
         thumbnail: "/ca/caEx1.png",
         categories: ["Programming", "Math"],
         abstract: "Complexity is everywhere, but where does it come from? Introduction to the beauty of Cellular Automata"
+    },
+    {
+        id: "autumn22_special",
+        title: "The phenomenal coloring of autumn",
+        date: "2022-10-28",
+        author: "Esther-Philine Pogoda",
+        thumbnail: "TODO",
+        categories: ["Chemistry"],
+        abstract: "TODO"
     }
 ]
 
