@@ -98,7 +98,7 @@ const posts: Array<Post> = [
         date: "2022-09-01",
         thumbnail: "TODO",
         categories: ["Chemistry"],
-        abstract: "TODO"
+        abstract: "How and why the pH works as a measurement tool in acid-base chemistry."
     },
     {
         id: "acid_base_weak",
@@ -107,7 +107,7 @@ const posts: Array<Post> = [
         date: "2022-09-03",
         thumbnail: "TODO",
         categories: ["Chemistry"],
-        abstract: "TODO"
+        abstract: "Learn about weak acids and bases and how to determine their pH and pk_a."
     }
 ]
 
