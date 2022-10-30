@@ -108,6 +108,15 @@ const posts: Array<Post> = [
         thumbnail: "TODO",
         categories: ["Chemistry"],
         abstract: "Learn about weak acids and bases and how to determine their pH and pk_a."
+    },
+    {
+        id: "acid_base_buffer",
+        title: "Acid & Base chemistry: Buffers",
+        author: "Esther-Philine Pogoda",
+        date: "2022-10-30",
+        thumbnail: "TODO",
+        categories: ["Chemistry"],
+        abstract: "Buffers play a crucial role in many biological systems. Discover what exactly they are and how they work."
     }
 ]
 
