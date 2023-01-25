@@ -117,6 +117,15 @@ const posts: Array<Post> = [
         thumbnail: "TODO",
         categories: ["Chemistry"],
         abstract: "Buffers play a crucial role in many biological systems. Discover what exactly they are and how they work."
+    },
+    {
+        id: "autumn22_special",
+        title: "The colours of autumn",
+        author: "Esther-Philine Pogoda",
+        date: "2022-10-30",
+        thumbnail: "TODO",
+        categories: ["Chemistry"],
+        abstract: "Buffers play a crucial role in many biological systems. Discover what exactly they are and how they work."
     }
 ]
 
