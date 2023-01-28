@@ -42,4 +42,40 @@ export const test = () => {
         requestAnimationFrame(render);
       }
     requestAnimationFrame(render);
+
+    function transform() {
+      const m = new THREE.Matrix4();
+      m.set(
+        2,0,0,0,
+        0,2,0,0,
+        0,0,2,0,
+        0,0,0,1
+      )
+      cube.applyMatrix4(m)
+    }
+
+    waitForElm("#transformButton").then((transformButton) => {
+        transformButton.addEventListener("click", transform)
+    })
+    
+}
+
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
 }
