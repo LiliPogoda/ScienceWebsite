@@ -29,6 +29,9 @@ export const test = () => {
 
     scene.add(cube);
 
+    var axesHelper = new THREE.AxesHelper( 5 );
+    scene.add( axesHelper );
+
     renderer.render(scene, camera);
 
     function render(time) {
