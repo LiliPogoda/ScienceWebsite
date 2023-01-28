@@ -24,9 +24,9 @@ export default function Layout({
   pageIdx?: number;
 }) {
   return (
-    <div className={styles.container}>
+    <Container className={styles.container} sx={{minWidth: "fit-content"}}>
       <Head>
-        <link rel="icon" href="/acs.png" />
+        <link rel="icon" href="/img/owl4.png" />
         <meta name="description" content={Constants.META_DESCRIPTION} />
         <meta name="og:title" content={Constants.SITE_TITLE} />
         <title>{Constants.SITE_TITLE}</title>
@@ -45,13 +45,13 @@ export default function Layout({
         </Container>
       </header>
       <main className={styles.relative} style={{zIndex: "1"}}>
-        <Container maxWidth="lg" className={utilStyles.mainContainer}>
+        <Container maxWidth="lg" className={utilStyles.mainContainer} sx={{minWidth: {xs: "fit-content"}}}>
           <Stack spacing={1}>
             {children}
             <footer style={{color: "gray", position: "relative", bottom: 0}}><small>&copy; Copyright 2022, Jan Schering & Esther-Philine Dorsch</small></footer> 
           </Stack>
         </Container>
       </main>
-    </div>
+    </Container>
   );
 }

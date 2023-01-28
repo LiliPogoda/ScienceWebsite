@@ -19,7 +19,7 @@ export default function Document() {
         <script src="/google.js"></script>
         <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css"></link>
-        <script src="https://3Dmol.csb.pitt.edu/build/3Dmol-min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/3Dmol/1.8.0/3Dmol.js"></script>
       </Head>
       <body>
         <Main />
